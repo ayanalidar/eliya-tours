@@ -7,6 +7,7 @@
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { rateLimit, getClientIP, rateLimitResponse, sanitizeEmail, sanitizeString, isValidPin, isValidEmail } from '@/lib/security'
 
 const GUEST_COOKIE = 'eliya_guest_session'
 
@@ -30,6 +31,13 @@ function parseToken(token: string) {
 }
 
 export async function POST(req: NextRequest) {
+  // Rate limit: 5 attempts per IP per 15 minutes (brute-force protection)
+  const ip = getClientIP(req)
+  const rl = rateLimit(`guest-auth:${ip}`, 5, 15 * 60 * 1000)
+  if (!rl.allowed) {
+    return rateLimitResponse(rl.resetAt)
+  }
+
   const body = await req.json().catch(() => ({}))
   const action = body.action
 
@@ -38,19 +46,26 @@ export async function POST(req: NextRequest) {
     if (!name || !email || !pin) {
       return NextResponse.json({ error: 'name, email, pin required' }, { status: 400 })
     }
-    if (String(pin).length !== 6 || !/^\d{6}$/.test(String(pin))) {
+
+    const cleanName = sanitizeString(String(name), 100)
+    const cleanEmail = sanitizeEmail(String(email))
+    if (!isValidEmail(cleanEmail)) {
+      return NextResponse.json({ error: 'Invalid email format' }, { status: 400 })
+    }
+    if (!isValidPin(String(pin))) {
       return NextResponse.json({ error: 'PIN must be 6 digits' }, { status: 400 })
     }
-    const existing = await db.guest.findUnique({ where: { email: String(email).toLowerCase() } })
+
+    const existing = await db.guest.findUnique({ where: { email: cleanEmail } })
     if (existing) {
       return NextResponse.json({ error: 'Email already registered. Log in instead.' }, { status: 400 })
     }
 
     const guest = await db.guest.create({
       data: {
-        name: String(name),
-        email: String(email).toLowerCase(),
-        phone: phone ? String(phone) : null,
+        name: cleanName,
+        email: cleanEmail,
+        phone: phone ? sanitizeString(String(phone), 20) : null,
         pin: String(pin),
       },
     })
@@ -64,6 +79,7 @@ export async function POST(req: NextRequest) {
       sameSite: 'lax',
       path: '/',
       maxAge: 60 * 60 * 24 * 30,
+      secure: process.env.NODE_ENV === 'production',
     })
     return res
   }
@@ -74,7 +90,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Email and PIN required' }, { status: 400 })
   }
 
-  const guest = await db.guest.findUnique({ where: { email: String(email).toLowerCase() } })
+  const cleanEmail = sanitizeEmail(String(email))
+  if (!isValidEmail(cleanEmail) || !isValidPin(String(pin))) {
+    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
+  }
+
+  const guest = await db.guest.findUnique({ where: { email: cleanEmail } })
+  // Same error for both cases (prevent user enumeration)
   if (!guest || guest.pin !== String(pin)) {
     return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
   }
@@ -88,6 +110,7 @@ export async function POST(req: NextRequest) {
     sameSite: 'lax',
     path: '/',
     maxAge: 60 * 60 * 24 * 30,
+    secure: process.env.NODE_ENV === 'production',
   })
   return res
 }

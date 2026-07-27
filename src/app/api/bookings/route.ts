@@ -7,6 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { createNotification } from '@/lib/notify'
+import { rateLimit, getClientIP, rateLimitResponse, sanitizeString, sanitizeEmail, isValidEmail } from '@/lib/security'
 
 const SESSION_COOKIE = 'eliya_admin_session'
 const GUEST_COOKIE = 'eliya_guest_session'
@@ -52,6 +53,13 @@ async function validateOfferCode(code: string): Promise<{ valid: boolean; discou
 }
 
 export async function POST(req: NextRequest) {
+  // Rate limit: 3 bookings per IP per hour (abuse protection)
+  const ip = getClientIP(req)
+  const rl = rateLimit(`booking:${ip}`, 3, 60 * 60 * 1000)
+  if (!rl.allowed) {
+    return rateLimitResponse(rl.resetAt)
+  }
+
   const body = await req.json().catch(() => ({}))
   const {
     guestName, guestEmail, guestPhone, packageName, destinationIds,
@@ -61,6 +69,18 @@ export async function POST(req: NextRequest) {
 
   if (!guestName || !guestEmail || !guestPhone || !packageName || !startDate || !endDate) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+  }
+
+  // Validate + sanitize inputs
+  const cleanEmail = sanitizeEmail(String(guestEmail))
+  if (!isValidEmail(cleanEmail)) {
+    return NextResponse.json({ error: 'Invalid email format' }, { status: 400 })
+  }
+  const cleanName = sanitizeString(String(guestName), 100)
+  const cleanPhone = sanitizeString(String(guestPhone), 20)
+  const cleanPackage = sanitizeString(String(packageName), 200)
+  if (!cleanName || !cleanPhone || !cleanPackage) {
+    return NextResponse.json({ error: 'Fields cannot be empty' }, { status: 400 })
   }
 
   // Validate offer if provided
@@ -84,24 +104,24 @@ export async function POST(req: NextRequest) {
 
   // Try to find or create guest
   let guestId: string | null = null
-  const existingGuest = await db.guest.findUnique({ where: { email: String(guestEmail) } })
+  const existingGuest = await db.guest.findUnique({ where: { email: cleanEmail } })
   if (existingGuest) guestId = existingGuest.id
 
   const booking = await db.booking.create({
     data: {
       reference,
       guestId,
-      guestName: String(guestName),
-      guestEmail: String(guestEmail),
-      guestPhone: String(guestPhone),
-      packageName: String(packageName),
+      guestName: cleanName,
+      guestEmail: cleanEmail,
+      guestPhone: cleanPhone,
+      packageName: cleanPackage,
       destinationIds: JSON.stringify(destinationIds || []),
-      startDate: String(startDate),
-      endDate: String(endDate),
-      party: String(party || ''),
+      startDate: sanitizeString(String(startDate), 20),
+      endDate: sanitizeString(String(endDate), 20),
+      party: sanitizeString(String(party || ''), 100),
       baseAmount: base,
       discountPct,
-      discountCode: discountCode ? String(discountCode).toUpperCase() : null,
+      discountCode: discountCode ? sanitizeString(String(discountCode).toUpperCase(), 50) : null,
       taxPct: tax,
       totalAmount,
       currency: String(currency),

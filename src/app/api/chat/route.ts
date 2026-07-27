@@ -13,6 +13,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import ZAI from 'z-ai-web-dev-sdk'
 import { db } from '@/lib/db'
+import { rateLimit, getClientIP, rateLimitResponse, sanitizeString } from '@/lib/security'
 
 const WHATSAPP_NUMBER = '919419012345'
 
@@ -91,6 +92,13 @@ RULES:
 }
 
 export async function POST(req: NextRequest) {
+  // Rate limit: 20 messages per IP per hour (cost abuse protection)
+  const ip = getClientIP(req)
+  const rl = rateLimit(`chat:${ip}`, 20, 60 * 60 * 1000)
+  if (!rl.allowed) {
+    return rateLimitResponse(rl.resetAt)
+  }
+
   const body = await req.json().catch(() => ({}))
   const { message, history = [], sessionId = 'anon' } = body
 
@@ -98,17 +106,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'message required' }, { status: 400 })
   }
 
-  // Log the user message
+  // Sanitize the message (XSS protection — message goes into LLM prompt + is stored)
+  const cleanMessage = sanitizeString(message, 2000)
+  if (!cleanMessage) {
+    return NextResponse.json({ error: 'message cannot be empty' }, { status: 400 })
+  }
+
+  // Log the user message (sanitized)
   try {
     await db.chatLog.create({
-      data: { sessionId, role: 'user', content: String(message).slice(0, 4000) },
+      data: { sessionId, role: 'user', content: cleanMessage.slice(0, 4000) },
     })
   } catch {
     // ignore log errors
   }
 
   // Live chat handoff: if user asks for human/whatsapp, generate handoff link
-  if (detectHandoff(message)) {
+  if (detectHandoff(cleanMessage)) {
     const reply = await buildHandoffReply(sessionId)
     try {
       await db.chatLog.create({
@@ -129,9 +143,9 @@ export async function POST(req: NextRequest) {
     { role: 'system', content: systemPrompt },
     ...recentHistory.map((h: { role: string; content: string }) => ({
       role: (h.role === 'assistant' ? 'assistant' : 'user') as 'assistant' | 'user',
-      content: String(h.content).slice(0, 4000),
+      content: sanitizeString(String(h.content), 4000),
     })),
-    { role: 'user', content: String(message).slice(0, 4000) },
+    { role: 'user', content: cleanMessage.slice(0, 4000) },
   ]
 
   try {

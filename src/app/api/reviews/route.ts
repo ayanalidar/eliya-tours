@@ -1,13 +1,17 @@
 // ============================================================
 // Reviews API
 // GET /api/reviews?destinationId=...&approved=true
-// POST — public submission (creates as unapproved)
+// POST — public submission (creates as unapproved, rate-limited)
 // PATCH — admin approve/reply
 // DELETE — admin
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { createNotification } from '@/lib/notify'
+import {
+  rateLimit, getClientIP, rateLimitResponse,
+  sanitizeString, sanitizeEmail, isValidEmail, isValidRating,
+} from '@/lib/security'
 
 const SESSION_COOKIE = 'eliya_admin_session'
 
@@ -42,17 +46,37 @@ export async function GET(req: NextRequest) {
   const where: Record<string, unknown> = {}
   if (destinationId) where.destinationId = destinationId
   if (hotelId) where.hotelId = hotelId
-  if (onlyApproved) where.approved = true
+  // Only show approved reviews to public (unless admin)
+  if (onlyApproved || !(await isAdmin(req))) {
+    where.approved = true
+  }
 
   const reviews = await db.review.findMany({
     where,
     orderBy: { createdAt: 'desc' },
     take: 100,
   })
-  return NextResponse.json({ reviews })
+
+  // Strip guestEmail from public responses (PII protection)
+  const admin = await isAdmin(req)
+  const safeReviews = admin
+    ? reviews
+    : reviews.map((r) => {
+        const { guestEmail, ...publicFields } = r
+        return publicFields
+      })
+
+  return NextResponse.json({ reviews: safeReviews })
 }
 
 export async function POST(req: NextRequest) {
+  // Rate limit: 3 review submissions per IP per hour (spam protection)
+  const ip = getClientIP(req)
+  const rl = rateLimit(`review-submit:${ip}`, 3, 60 * 60 * 1000)
+  if (!rl.allowed) {
+    return rateLimitResponse(rl.resetAt)
+  }
+
   const body = await req.json().catch(() => ({}))
   const { guestName, guestEmail, rating, title, body: reviewBody, destinationId, hotelId, packageName, tripDate } = body
 
@@ -60,22 +84,37 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
+  // Validate + sanitize all inputs (XSS protection)
+  const cleanEmail = sanitizeEmail(String(guestEmail))
+  if (!isValidEmail(cleanEmail)) {
+    return NextResponse.json({ error: 'Invalid email format' }, { status: 400 })
+  }
+
   const r = Number(rating)
-  if (r < 1 || r > 5) {
-    return NextResponse.json({ error: 'Rating must be 1-5' }, { status: 400 })
+  if (!isValidRating(r)) {
+    return NextResponse.json({ error: 'Rating must be an integer 1-5' }, { status: 400 })
+  }
+
+  const cleanName = sanitizeString(String(guestName), 100)
+  const cleanTitle = sanitizeString(String(title), 200)
+  const cleanBody = sanitizeString(String(reviewBody), 5000)
+  const cleanTripDate = tripDate ? sanitizeString(String(tripDate), 20) : null
+
+  if (!cleanName || !cleanTitle || !cleanBody) {
+    return NextResponse.json({ error: 'Fields cannot be empty after sanitization' }, { status: 400 })
   }
 
   const review = await db.review.create({
     data: {
-      guestName: String(guestName),
-      guestEmail: String(guestEmail),
+      guestName: cleanName,
+      guestEmail: cleanEmail,
       rating: r,
-      title: String(title),
-      body: String(reviewBody),
-      destinationId: destinationId ? String(destinationId) : null,
-      hotelId: hotelId ? String(hotelId) : null,
-      packageName: packageName ? String(packageName) : null,
-      tripDate: tripDate ? String(tripDate) : null,
+      title: cleanTitle,
+      body: cleanBody,
+      destinationId: destinationId ? sanitizeString(String(destinationId), 100) : null,
+      hotelId: hotelId ? sanitizeString(String(hotelId), 100) : null,
+      packageName: packageName ? sanitizeString(String(packageName), 200) : null,
+      tripDate: cleanTripDate,
       approved: false,
       verified: false,
     },
@@ -86,8 +125,8 @@ export async function POST(req: NextRequest) {
     userId: 'all',
     userType: 'admin',
     type: 'review',
-    title: `New review from ${guestName}`,
-    message: `"${title}" — ${r}★ awaiting approval`,
+    title: `New review from ${cleanName}`,
+    message: `"${cleanTitle}" — ${r}★ awaiting approval`,
     link: '#/admin',
   })
 
@@ -104,7 +143,7 @@ export async function PATCH(req: NextRequest) {
 
   const data: Record<string, unknown> = {}
   if (approved !== undefined) data.approved = Boolean(approved)
-  if (reply !== undefined) data.reply = String(reply)
+  if (reply !== undefined) data.reply = sanitizeString(String(reply), 1000)
   if (verified !== undefined) data.verified = Boolean(verified)
 
   const review = await db.review.update({ where: { id: String(id) }, data })

@@ -7,6 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { createNotification } from '@/lib/notify'
+import { rateLimit, getClientIP, rateLimitResponse, sanitizeString, sanitizeEmail, isValidEmail } from '@/lib/security'
 
 const SESSION_COOKIE = 'eliya_admin_session'
 
@@ -34,6 +35,13 @@ async function isAdmin(req: NextRequest) {
 
 // POST — public submission
 export async function POST(req: NextRequest) {
+  // Rate limit: 5 enquiries per IP per hour (spam protection)
+  const ip = getClientIP(req)
+  const rl = rateLimit(`enquiry:${ip}`, 5, 60 * 60 * 1000)
+  if (!rl.allowed) {
+    return rateLimitResponse(rl.resetAt)
+  }
+
   const body = await req.json().catch(() => ({}))
   const { name, email, phone, destination, dates, party, notes } = body
 
@@ -44,15 +52,30 @@ export async function POST(req: NextRequest) {
     )
   }
 
+  // Validate + sanitize all inputs
+  const cleanEmail = sanitizeEmail(String(email))
+  if (!isValidEmail(cleanEmail)) {
+    return NextResponse.json({ error: 'Invalid email format' }, { status: 400 })
+  }
+
+  const cleanName = sanitizeString(String(name), 100)
+  const cleanDestination = sanitizeString(String(destination), 100)
+  const cleanDates = sanitizeString(String(dates), 100)
+  const cleanParty = sanitizeString(String(party), 100)
+
+  if (!cleanName || !cleanDestination || !cleanDates || !cleanParty) {
+    return NextResponse.json({ error: 'Fields cannot be empty' }, { status: 400 })
+  }
+
   const enquiry = await db.enquiry.create({
     data: {
-      name: String(name),
-      email: String(email),
-      phone: phone ? String(phone) : null,
-      destination: String(destination),
-      dates: String(dates),
-      party: String(party),
-      notes: notes ? String(notes) : null,
+      name: cleanName,
+      email: cleanEmail,
+      phone: phone ? sanitizeString(String(phone), 20) : null,
+      destination: cleanDestination,
+      dates: cleanDates,
+      party: cleanParty,
+      notes: notes ? sanitizeString(String(notes), 2000) : null,
       status: 'new',
     },
   })
@@ -62,8 +85,8 @@ export async function POST(req: NextRequest) {
     userId: 'all',
     userType: 'admin',
     type: 'enquiry',
-    title: `New enquiry from ${name}`,
-    message: `${destination} · ${dates} · ${party}`,
+    title: `New enquiry from ${cleanName}`,
+    message: `${cleanDestination} · ${cleanDates} · ${cleanParty}`,
     link: '#/admin',
   })
 

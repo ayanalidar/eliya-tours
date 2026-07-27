@@ -6,6 +6,7 @@
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { rateLimit, getClientIP, rateLimitResponse, sanitizeEmail, isValidPin, isValidEmail } from '@/lib/security'
 
 const SESSION_COOKIE = 'eliya_admin_session'
 
@@ -29,6 +30,13 @@ function parseToken(token: string): { userId: string; email: string; expires: nu
 }
 
 export async function POST(req: NextRequest) {
+  // Rate limit: 5 login attempts per IP per 15 minutes (brute-force protection)
+  const ip = getClientIP(req)
+  const rl = rateLimit(`admin-login:${ip}`, 5, 15 * 60 * 1000)
+  if (!rl.allowed) {
+    return rateLimitResponse(rl.resetAt)
+  }
+
   const body = await req.json().catch(() => ({}))
   const { email, pin } = body
 
@@ -36,8 +44,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Email and PIN are required' }, { status: 400 })
   }
 
-  const user = await db.adminUser.findUnique({ where: { email: String(email).toLowerCase() } })
-  if (!user || !user.active || user.pin !== String(pin)) {
+  // Validate email format
+  const cleanEmail = sanitizeEmail(String(email))
+  if (!isValidEmail(cleanEmail)) {
+    return NextResponse.json({ error: 'Invalid email format' }, { status: 400 })
+  }
+
+  // Validate PIN format (must be 6 digits)
+  const cleanPin = String(pin)
+  if (!isValidPin(cleanPin)) {
+    return NextResponse.json({ error: 'PIN must be 6 digits' }, { status: 400 })
+  }
+
+  const user = await db.adminUser.findUnique({ where: { email: cleanEmail } })
+  // Use same error message for both cases to prevent user enumeration
+  if (!user || !user.active || user.pin !== cleanPin) {
     return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
   }
 
@@ -50,6 +71,7 @@ export async function POST(req: NextRequest) {
     sameSite: 'lax',
     path: '/',
     maxAge: 60 * 60 * 12,
+    secure: process.env.NODE_ENV === 'production',
   })
   return res
 }
