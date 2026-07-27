@@ -1,10 +1,11 @@
 {
-  "name": "Eliya Tours And Travels — Discover Kashmir",
+  "name": "Eliya Tours And Travels — Discover Kashmir & Ladakh",
   "short_name": "Eliya Tours",
-  "description": "Curated Kashmir & Ladakh journeys since 2009. Houseboats, alpine meadows, Mughal gardens, ski expeditions and more.",
+  "description": "Curated Kashmir & Ladakh journeys since 2009. Houseboats, alpine meadows, Mughal gardens, ski expeditions, AI guide, online booking, and more.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "minimal-ui"],
   "orientation": "portrait-primary",
   "background_color": "#1c1917",
   "theme_color": "#1c1917",
@@ -33,10 +34,22 @@
       "description": "Browse all Kashmir + Ladakh destinations"
     },
     {
+      "name": "Adventures",
+      "short_name": "Adventures",
+      "url": "/#/adventures",
+      "description": "Skiing, trekking, rafting, paragliding & more"
+    },
+    {
       "name": "AI Guide",
       "short_name": "Tariq AI",
       "url": "/#/ai-guide",
       "description": "Chat with our local AI guide"
+    },
+    {
+      "name": "Book now",
+      "short_name": "Book",
+      "url": "/#/booking",
+      "description": "Book your trip"
     },
     {
       "name": "Plan my trip",
@@ -44,5 +57,7 @@
       "url": "/#/contact",
       "description": "Submit an enquiry"
     }
-  ]
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
 }

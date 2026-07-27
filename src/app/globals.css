@@ -123,6 +123,22 @@
     overflow-x: hidden;
     max-width: 100vw;
     width: 100%;
+    /* Disable text selection on UI elements (app-like) */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* Disable touch callouts (app-like) */
+    -webkit-touch-callout: none;
+    /* Prevent overscroll bounce (app-like) */
+    overscroll-behavior: none;
+    /* Smooth scrolling */
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Allow text selection in form inputs and content areas */
+  input, textarea, [contenteditable="true"], .selectable {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
   }
   /* Long words/URLs should never force overflow */
   p, h1, h2, h3, h4, h5, h6, span, a, li, td, th, button {
@@ -138,6 +154,10 @@
   img, video, svg, canvas {
     max-width: 100%;
     height: auto;
+  }
+  /* Disable pull-to-refresh (app-like) */
+  body {
+    overscroll-behavior-y: contain;
   }
 }
 

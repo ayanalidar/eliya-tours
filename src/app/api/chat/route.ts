@@ -149,7 +149,12 @@ export async function POST(req: NextRequest) {
   ]
 
   try {
-    const zai = await ZAI.create()
+    // Pass API key explicitly — on Vercel, the ZAI SDK can't find .z-ai-config
+    const apiKey = process.env.ZAI_API_KEY
+    if (!apiKey) {
+      throw new Error('ZAI_API_KEY environment variable is not set')
+    }
+    const zai = await ZAI.create({ apiKey })
     const response = await zai.chat.completions.create({
       model: 'glm-4.6',
       messages,

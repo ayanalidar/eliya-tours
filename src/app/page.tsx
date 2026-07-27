@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useRouter } from '@/lib/router'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -27,6 +28,23 @@ import { OffersPage } from '@/components/pages/offers-page'
 
 export default function Home() {
   const { route } = useRouter()
+  const [mounted, setMounted] = useState(false)
+
+  // Wait for client mount before rendering — prevents hydration crashes
+  // from window.location.hash access during SSR
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true)
+  }, [])
+
+  // Show a loading shell during SSR + first paint
+  if (!mounted) {
+    return (
+      <div className="min-h-screen grid place-items-center bg-stone-950">
+        <div className="text-amber-50 text-sm animate-pulse">Loading Eliya Tours…</div>
+      </div>
+    )
+  }
 
   // ----- Standalone full-page routes (no header/footer) -----
   if (route.name === 'ai-guide') {

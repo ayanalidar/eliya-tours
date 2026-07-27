@@ -4,9 +4,10 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import {
   ArrowLeft, LogOut, Lock, Mail, LayoutDashboard, MapPin, CalendarDays, Hotel as HotelIcon,
   Inbox, FileText, Plus, Edit, Trash2, Check, X, Download, Sparkles, Loader2,
-  Tag, Star, Mountain, Upload, ImageIcon, DollarSign, Route,
+  Tag, Star, Mountain, Upload, ImageIcon, DollarSign, Route, Database,
 } from 'lucide-react'
 import { useNav } from '@/lib/router'
+import { UniversalEditor } from '@/components/admin/universal-editor'
 
 // ============================================================
 // Admin panel — PIN-based login + CMS
@@ -20,7 +21,7 @@ export function AdminPage() {
   const [checking, setChecking] = useState(true)
   const [tab, setTab] = useState<
     'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' |
-    'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries'
+    'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor'
   >('dashboard')
 
   useEffect(() => {
@@ -57,6 +58,7 @@ export function AdminPage() {
     { id: 'reviews' as const, label: 'Reviews', Icon: Star },
     { id: 'invoices' as const, label: 'Invoices', Icon: FileText },
     { id: 'itineraries' as const, label: 'Itineraries', Icon: Route },
+    { id: 'data-editor' as const, label: 'Data Editor', Icon: Database },
   ]
 
   return (
@@ -113,6 +115,7 @@ export function AdminPage() {
         {tab === 'reviews' && <ReviewsManager />}
         {tab === 'invoices' && <InvoicesManager user={user} />}
         {tab === 'itineraries' && <ItinerariesManager user={user} />}
+        {tab === 'data-editor' && <UniversalEditor />}
       </main>
     </div>
   )
@@ -221,7 +224,7 @@ function LoginScreen({ onSuccess, onBack }: { onSuccess: (u: AdminUser) => void;
 // ============================================================
 // Dashboard
 // ============================================================
-type TabId = 'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' | 'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries'
+type TabId = 'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' | 'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor'
 function Dashboard({ user, setTab }: { user: AdminUser; setTab: (t: TabId) => void }) {
   const [stats, setStats] = useState({ enquiries: 0, destinations: 0, seasons: 0, hotels: 0, invoices: 0, newEnquiries: 0, bookings: 0, adventures: 0, offers: 0, pendingReviews: 0 })
   const [loading, setLoading] = useState(true)
