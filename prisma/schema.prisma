@@ -1,0 +1,323 @@
+// ============================================================
+// Eliya Tours And Travels — Prisma schema
+// Production: PostgreSQL (Vercel Postgres / Neon / Supabase)
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Destinations ----------
+model Destination {
+  id          String   @id
+  name        String
+  region      String   // e.g. "Srinagar", "Gulmarg", "Ladakh"
+  area        String   // broader grouping: "Kashmir Valley", "Pir Panjal", "Ladakh"
+  elevation   String
+  bestSeason  String
+  tagline     String
+  description String
+  longDescription String
+  image       String
+  gallery     String   // JSON array of URLs
+  accent      String
+  latitude    Float
+  longitude   Float
+  rating      Float    @default(4.5)
+  curated     Int      @default(90) // percentage
+  visitors    Int      @default(50) // percentage
+  safety      Int      @default(90) // percentage
+  highlights  String   // JSON array of strings
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([area])
+  @@index([region])
+}
+
+// ---------- Seasons ----------
+model Season {
+  id          String   @id
+  season      String
+  months      String
+  title       String
+  theme       String
+  description String
+  longDescription String?
+  image       String
+  color       String
+  priceFrom   Int
+  duration    String
+  isFeatured  Boolean  @default(false)
+  destinations String  // JSON array of destination ids
+  itinerary   String?  // JSON array of day-by-day plan
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ---------- Hotels ----------
+model Hotel {
+  id          String   @id
+  name        String
+  destinationId String
+  type        String   // "Houseboat", "Hotel", "Lodge", "Camp", "Resort"
+  starRating  Int      @default(3)
+  description String
+  longDescription String?
+  image       String
+  gallery     String   // JSON array
+  priceFrom   Int      // per night INR
+  amenities   String   // JSON array
+  rooms       Int      @default(0)
+  checkIn     String   @default("12:00")
+  checkOut    String   @default("11:00")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([destinationId])
+}
+
+// ---------- Enquiries (Plan My Trip submissions) ----------
+model Enquiry {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  destination String
+  dates       String
+  party       String
+  notes       String?
+  status      String   @default("new") // new, contacted, confirmed, closed
+  assignedTo  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ---------- Admin Users (PIN-based auth) ----------
+model AdminUser {
+  id          String   @id @default(cuid())
+  name        String
+  email       String   @unique
+  pin         String   // 6-digit PIN, hashed
+  role        String   @default("editor") // admin, editor, sales
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ---------- Packages (curated itineraries) ----------
+model Package {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  duration    String
+  price       Int
+  destinations String  // JSON array
+  inclusions  String   // JSON array
+  exclusions  String   // JSON array
+  itinerary   String   // JSON day-by-day
+  image       String?
+  featured    Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdBy   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([active])
+  @@index([featured])
+}
+
+// ---------- Offers ----------
+model Offer {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  code        String   @unique
+  discountPct Int      @default(0)
+  validFrom   DateTime
+  validTo     DateTime
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ---------- Invoices ----------
+model Invoice {
+  id          String   @id @default(cuid())
+  number      String   @unique
+  clientName  String
+  clientEmail String?
+  clientPhone String?
+  packageName String?
+  amount      Int      // in INR
+  discountPct Int      @default(0)
+  taxPct      Int      @default(5)
+  totalAmount Int
+  status      String   @default("draft") // draft, sent, paid, cancelled
+  issuedBy    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+}
+
+// ---------- Chat logs (AI guide) ----------
+model ChatLog {
+  id          String   @id @default(cuid())
+  sessionId   String
+  role        String   // user, assistant
+  content     String
+  createdAt   DateTime @default(now())
+
+  @@index([sessionId])
+}
+
+// ---------- Adventure sports ----------
+model AdventureSport {
+  id          String   @id
+  name        String
+  category    String   // "Skiing", "Trekking", "Water", "Air", "Climbing"
+  destinationId String
+  season      String   // months/season
+  description String
+  longDescription String?
+  image       String
+  priceFrom   Int      @default(0)
+  duration    String
+  difficulty  String   @default("Beginner") // Beginner, Intermediate, Advanced
+  minAge      Int      @default(10)
+  maxGroup    Int      @default(8)
+  gear        String   // JSON array
+  safety      String   // JSON array
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([destinationId])
+}
+
+// ---------- Reviews & ratings ----------
+model Review {
+  id          String   @id @default(cuid())
+  destinationId String?
+  hotelId     String?
+  packageName String?
+  guestName   String
+  guestEmail  String
+  rating      Int      // 1-5
+  title       String
+  body        String
+  tripDate    String?
+  verified    Boolean  @default(false)
+  approved    Boolean  @default(false) // admin must approve
+  reply       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([destinationId])
+  @@index([approved])
+}
+
+// ---------- Guest portal users ----------
+model Guest {
+  id          String   @id @default(cuid())
+  name        String
+  email       String   @unique
+  phone       String?
+  pin         String   // 6-digit PIN
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ---------- Bookings (online booking + payment) ----------
+model Booking {
+  id          String   @id @default(cuid())
+  reference   String   @unique // ELI-BKG-XXXXX
+  guestId     String?
+  guestName   String
+  guestEmail  String
+  guestPhone  String
+  packageId   String?
+  packageName String
+  destinationIds String // JSON array
+  startDate   String
+  endDate     String
+  party       String
+  baseAmount  Int      // INR
+  discountPct Int      @default(0)
+  discountCode String?
+  taxPct      Int      @default(5)
+  totalAmount Int
+  currency    String   @default("INR")
+  paidAmount  Int      @default(0)
+  paymentStatus String @default("pending") // pending, partial, paid, refunded
+  paymentMethod String? // razorpay, stripe, bank, upi
+  paymentRef  String?
+  status      String   @default("confirmed") // confirmed, cancelled, completed
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([guestEmail])
+}
+
+// ---------- Notifications (in-app) ----------
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String   // admin user id or guest id
+  userType    String   @default("admin") // admin, guest
+  type        String   // enquiry, booking, review, weather, system
+  title       String
+  message     String
+  link        String?
+  read        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([userId, userType, read])
+}
+
+// ---------- Seasonal pricing overrides ----------
+model SeasonalPrice {
+  id          String   @id @default(cuid())
+  hotelId     String
+  month       Int      // 1-12
+  multiplier  Float    @default(1.0) // multiply base price
+  note        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([hotelId, month])
+}
+
+// ---------- Currency rates (cached from API) ----------
+model CurrencyRate {
+  id          String   @id @default(cuid())
+  base        String   // "INR"
+  rates       String   // JSON { USD: 0.012, EUR: 0.011, ... }
+  fetchedAt   DateTime @default(now())
+
+  @@unique([base])
+}
+
+// ---------- Itinerary templates (admin builder) ----------
+model Itinerary {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  days        String   // JSON array of {day, destinationId, activities, hotelId, meals}
+  totalCost   Int      @default(0)
+  createdBy   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

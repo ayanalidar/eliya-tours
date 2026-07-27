@@ -1,0 +1,48 @@
+{
+  "name": "Eliya Tours And Travels — Discover Kashmir",
+  "short_name": "Eliya Tours",
+  "description": "Curated Kashmir & Ladakh journeys since 2009. Houseboats, alpine meadows, Mughal gardens, ski expeditions and more.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1c1917",
+  "theme_color": "#1c1917",
+  "categories": ["travel", "lifestyle", "shopping"],
+  "lang": "en-IN",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Destinations",
+      "short_name": "Destinations",
+      "url": "/#/destinations",
+      "description": "Browse all Kashmir + Ladakh destinations"
+    },
+    {
+      "name": "AI Guide",
+      "short_name": "Tariq AI",
+      "url": "/#/ai-guide",
+      "description": "Chat with our local AI guide"
+    },
+    {
+      "name": "Plan my trip",
+      "short_name": "Enquire",
+      "url": "/#/contact",
+      "description": "Submit an enquiry"
+    }
+  ]
+}

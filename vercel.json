@@ -1,0 +1,12 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "bun run vercel-build",
+  "installCommand": "bun install",
+  "devCommand": "bun run dev",
+  "regions": ["bom1"],
+  "functions": {
+    "src/app/api/chat/route.ts": {
+      "maxDuration": 60
+    }
+  }
+}
