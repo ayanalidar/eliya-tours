@@ -13,7 +13,7 @@
     "db:reset": "prisma migrate reset",
     "seed": "bun run scripts/seed.ts && bun run scripts/seed-adventures.ts && bun run scripts/seed-extras.ts",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && next build"
+    "vercel-build": "bun run scripts/vercel-build.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
