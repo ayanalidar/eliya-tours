@@ -6,8 +6,11 @@
 //   1. Make sure you have Bun installed: https://bun.sh
 //   2. Clone the repo: git clone https://github.com/ayanalidar/eliya-tours.git
 //   3. cd eliya-tours && bun install
-//   4. Run this script:
+//   4. Run this script with the DIRECT connection (port 5432) for schema push:
 //      DATABASE_URL="postgresql://postgres:Ayanalidar%40110@db.ssndwdauxdwwvfnafiuh.supabase.co:5432/postgres" bun run scripts/seed-supabase.ts
+//
+// NOTE: Use the DIRECT connection (db.ssndwdauxdwwvfnafiuh.supabase.co:5432) for this
+// seed script, NOT the pooler. The pooler (port 6543) is for the Vercel runtime.
 //
 // This will:
 //   - Create all 17 tables (via prisma db push)
@@ -20,8 +23,8 @@ import { execSync } from 'child_process'
 
 const DB_URL = process.env.DATABASE_URL
 if (!DB_URL || DB_URL.startsWith('file:')) {
-  console.error('❌ Set DATABASE_URL to your Supabase connection string')
-  console.error('   Example: DATABASE_URL="postgresql://..." bun run scripts/seed-supabase.ts')
+  console.error('❌ Set DATABASE_URL to your Supabase DIRECT connection string')
+  console.error('   Example: DATABASE_URL="postgresql://postgres:PASSWORD@db.ssndwdauxdwwvfnafiuh.supabase.co:5432/postgres" bun run scripts/seed-supabase.ts')
   process.exit(1)
 }
 
@@ -31,7 +34,15 @@ console.log('')
 
 // Step 1: Push schema (creates tables)
 console.log('📋 Step 1/4: Creating tables (prisma db push)...')
-execSync('bun run db:push', { stdio: 'inherit', env: process.env })
+try {
+  execSync('bun run db:push', { stdio: 'inherit', env: process.env })
+} catch {
+  console.error('\n❌ Failed to push schema. Common causes:')
+  console.error('   1. Supabase project is still provisioning (wait 5 min after creation)')
+  console.error('   2. Your network blocks outbound port 5432')
+  console.error('   3. Wrong password (make sure @ is URL-encoded as %40)')
+  process.exit(1)
+}
 
 // Step 2: Seed destinations, seasons, hotels, admins
 console.log('\n📋 Step 2/4: Seeding destinations, seasons, hotels, admins...')
@@ -47,4 +58,4 @@ execSync('bun run scripts/seed-extras.ts', { stdio: 'inherit', env: process.env 
 
 console.log('\n✅ Supabase seeded successfully!')
 console.log('   Your Vercel deployment will now have all data.')
-console.log('   Visit https://eliya-tours.vercel.app (or your Vercel URL)')
+console.log('   Visit your Vercel URL to see the live site.')
