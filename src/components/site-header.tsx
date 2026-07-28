@@ -11,8 +11,7 @@ const navItems = [
   { label: 'Adventures', route: { name: 'adventures' as const } },
   { label: 'Seasons', route: { name: 'seasons' as const } },
   { label: 'Hotels', route: { name: 'hotels' as const } },
-  { label: 'Flights', route: { name: 'flights' as const } },
-  { label: 'Trains', route: { name: 'railway' as const } },
+  { label: 'Tickets', route: { name: 'tickets' as const } },
   { label: 'AI Guide', route: { name: 'ai-guide' as const } },
   { label: 'Contact', route: { name: 'contact' as const } },
 ]
@@ -54,7 +53,7 @@ export function SiteHeader() {
           className="flex items-center gap-2.5 group"
         >
           <span
-            className={`grid place-items-center w-9 h-9 rounded-full transition-colors ${
+            className={`grid place-items-center w-9 h-9 rounded-full transition-colors shrink-0 ${
               useLightHeader
                 ? 'bg-amber-50/15 backdrop-blur text-amber-50 ring-1 ring-amber-50/30'
                 : 'bg-stone-900 text-amber-50'
@@ -62,22 +61,13 @@ export function SiteHeader() {
           >
             <Mountain className="w-5 h-5" strokeWidth={2.2} />
           </span>
-          <div className="flex flex-col leading-tight">
-            <span
-              className={`text-sm font-semibold tracking-tight transition-colors ${
-                useLightHeader ? 'text-amber-50' : 'text-stone-900'
-              }`}
-            >
-              Eliya Tours
-            </span>
-            <span
-              className={`text-[10px] uppercase tracking-[0.2em] transition-colors ${
-                useLightHeader ? 'text-amber-100/80' : 'text-stone-500'
-              }`}
-            >
-              And Travels · Kashmir
-            </span>
-          </div>
+          <span
+            className={`text-sm font-semibold tracking-tight transition-colors whitespace-nowrap ${
+              useLightHeader ? 'text-amber-50' : 'text-stone-900'
+            }`}
+          >
+            Eliya Tours
+          </span>
         </button>
 
         <nav className="hidden md:flex items-center gap-1">
