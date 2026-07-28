@@ -7,7 +7,7 @@ import { useApp } from '@/lib/app-context'
 import { safeStringArray } from '@/lib/safe-parse'
 
 // ============================================================
-// Booking page — collects guest details, validates promo codes,
+// Booking page · collects guest details, validates promo codes,
 // computes pricing, and creates a booking via /api/bookings
 // ============================================================
 
@@ -129,7 +129,7 @@ export function BookingPage({ preselectedPackageId }: { preselectedPackageId?: s
 
           <div className="mt-6 flex flex-col gap-2">
             <a
-              href={`https://wa.me/919419012345?text=${encodeURIComponent(`Hi Eliya team, I just made a booking — reference ${confirmation.reference}. I'd like to confirm payment details.`)}`}
+              href={`https://wa.me/917006734747?text=${encodeURIComponent(`Hi Eliya team, I just made a booking · reference ${confirmation.reference}. I'd like to confirm payment details.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-green-500 text-white rounded-xl py-3 text-sm font-medium hover:bg-green-600 transition-colors"
@@ -228,7 +228,7 @@ export function BookingPage({ preselectedPackageId }: { preselectedPackageId?: s
             {promoStatus?.valid && (
               <div className="mt-2 flex items-center gap-2 text-xs text-green-700 bg-green-50 ring-1 ring-green-200 rounded-lg px-3 py-2">
                 <Check className="w-3.5 h-3.5" />
-                <span><strong>{promoStatus.title}</strong> — {promoStatus.discountPct}% off applied. {promoStatus.description}</span>
+                <span><strong>{promoStatus.title}</strong> · {promoStatus.discountPct}% off applied. {promoStatus.description}</span>
               </div>
             )}
             {form.promoCode && promoStatus && !promoStatus.valid && (
@@ -266,7 +266,7 @@ export function BookingPage({ preselectedPackageId }: { preselectedPackageId?: s
               ))}
             </div>
             <p className="mt-3 text-[11px] text-stone-400 flex items-center gap-1.5">
-              <Lock className="w-3 h-3" /> Demo mode — no real payment is processed. We&apos;ll arrange payment via WhatsApp after confirmation.
+              <Lock className="w-3 h-3" /> Demo mode · no real payment is processed. We&apos;ll arrange payment via WhatsApp after confirmation.
             </p>
           </div>
         </div>

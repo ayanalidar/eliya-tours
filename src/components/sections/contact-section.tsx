@@ -66,7 +66,7 @@ export function ContactSection() {
                   <div className="text-[10px] uppercase tracking-[0.2em] text-amber-200/70">Call us</div>
                   <div className="text-sm font-medium">{companyInfo.phone}</div>
                 </div>
-                <span className="text-[10px] text-amber-200/60">Mon — Sat · 9am — 8pm IST</span>
+                <span className="text-[10px] text-amber-200/60">Mon · Sat · 9am · 8pm IST</span>
               </a>
 
               <a
@@ -216,7 +216,7 @@ export function ContactSection() {
                 {submitted ? (
                   <>
                     <Check className="w-4 h-4" />
-                    Enquiry received — we&apos;ll reply within 24h
+                    Enquiry received · we&apos;ll reply within 24h
                   </>
                 ) : (
                   <>

@@ -5,7 +5,7 @@ import { Send, Sparkles, Loader2, User, Bot, ArrowLeft, MessageCircle, Phone } f
 import { useNav } from '@/lib/router'
 
 // ============================================================
-// AI Guide Chat page — Tariq, the local Kashmir guide
+// AI Guide Chat page · Tariq, the local Kashmir guide
 // Uses /api/chat which calls z-ai-web-dev-sdk LLM with live
 // DB context (destinations, seasons, hotels, packages)
 // ============================================================
@@ -14,7 +14,7 @@ type Message = { role: 'user' | 'assistant'; content: string; ts: number }
 
 const SUGGESTED = [
   'What\'s the best 7-day Kashmir itinerary for first-timers?',
-  'I want to ski Gulmarg in February — what should I pack?',
+  'I want to ski Gulmarg in February · what should I pack?',
   'Design a 10-day Ladakh trip including Pangong and Nubra.',
   'We\'re a family of 4 with 2 kids. What do you recommend?',
   'When is the saffron harvest in Pampore?',
@@ -27,7 +27,7 @@ export function AIGuidePage() {
     {
       role: 'assistant',
       content:
-        "Assalam-u-alaikum, I'm Tariq — your local Kashmir guide from Eliya Tours. I've been running trips in Kashmir and Ladakh since 2009. Ask me about any destination, season, hotel, or package — or tell me what you're dreaming of and I'll design a custom itinerary for you. How can I help?",
+        "Assalam-u-alaikum, I'm Tariq · your local Kashmir guide from Eliya Tours. I've been running trips in Kashmir and Ladakh since 2009. Ask me about any destination, season, hotel, or package · or tell me what you're dreaming of and I'll design a custom itinerary for you. How can I help?",
       ts: Date.now(),
     },
   ])
@@ -62,7 +62,7 @@ export function AIGuidePage() {
       const data = await r.json()
       const reply =
         data.reply ||
-        "I apologize — I couldn't generate a reply. Please WhatsApp us at +91 94190 12345."
+        "I apologize · I couldn't generate a reply. Please WhatsApp us at +91-7006734747."
       setMessages((m) => [...m, { role: 'assistant', content: reply, ts: Date.now() }])
     } catch {
       setMessages((m) => [
@@ -70,7 +70,7 @@ export function AIGuidePage() {
         {
           role: 'assistant',
           content:
-            "I'm having trouble connecting right now. Please WhatsApp us at +91 94190 12345 — Tariq or Imran will reply within minutes.",
+            "I'm having trouble connecting right now. Please WhatsApp us at +91-7006734747 · Tariq or Imran will reply within minutes.",
           ts: Date.now(),
         },
       ])
@@ -109,7 +109,7 @@ export function AIGuidePage() {
             </div>
           </div>
           <a
-            href="https://wa.me/919419012345"
+            href="https://wa.me/917006734747"
             target="_blank"
             rel="noopener noreferrer"
             className="grid place-items-center w-9 h-9 rounded-full bg-green-500/15 hover:bg-green-500/25 text-green-300 transition-colors"
@@ -118,7 +118,7 @@ export function AIGuidePage() {
             <MessageCircle className="w-4 h-4" />
           </a>
           <a
-            href="tel:+919419012345"
+            href="tel:+917006734747"
             className="grid place-items-center w-9 h-9 rounded-full bg-amber-50/10 hover:bg-amber-50/20 text-amber-50 transition-colors"
             aria-label="Call"
           >

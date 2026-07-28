@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react'
 
 // ============================================================
-// Global app context — currency, language, notifications, toasts
+// Global app context · currency, language, notifications, toasts
 // ============================================================
 
 type CurrencyInfo = { code: string; symbol: string; rate: number; name: string }
@@ -104,7 +104,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setNotifications(data.notifications || [])
       setUnreadCount(data.unreadCount || 0)
     } catch {
-      // not logged in — silent
+      // not logged in · silent
     }
   }, [])
 

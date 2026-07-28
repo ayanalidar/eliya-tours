@@ -185,7 +185,7 @@ export function TicketsPage() {
             <span className="text-[11px] uppercase tracking-[0.32em] text-amber-200/80 font-medium">Eliya Ticket Booking</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">Book Flights & Trains</h1>
-          <p className="mt-2 text-sm sm:text-base text-stone-300 max-w-xl">Fly to Srinagar, Jammu, or Leh — or take the scenic train through the Pir Panjal tunnel. We handle all bookings.</p>
+          <p className="mt-2 text-sm sm:text-base text-stone-300 max-w-xl">Fly to Srinagar, Jammu, or Leh · or take the scenic train through the Pir Panjal tunnel. We handle all bookings.</p>
         </div>
       </div>
 
@@ -421,7 +421,7 @@ export function TicketsPage() {
             <h2 className="text-xl font-semibold text-stone-950">Booking request submitted!</h2>
             <p className="text-sm text-stone-500 mt-2">We've received your {tab === 'flights' ? 'flight' : 'train'} booking request. Our team will confirm availability and arrange payment via WhatsApp within 1 hour.</p>
             <div className="mt-6 flex flex-col gap-2">
-              <a href="https://wa.me/919419012345" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-green-500 text-white rounded-xl py-3 text-sm font-medium hover:bg-green-600">
+              <a href="https://wa.me/917006734747" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-green-500 text-white rounded-xl py-3 text-sm font-medium hover:bg-green-600">
                 Chat on WhatsApp
               </a>
               <button onClick={reset} className="text-stone-500 hover:text-stone-900 text-sm py-2">Book another ticket</button>

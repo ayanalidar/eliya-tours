@@ -1,5 +1,5 @@
 // ============================================================
-// Seasons API — list, get, create, update, delete
+// Seasons API · list, get, create, update, delete
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

@@ -1,9 +1,9 @@
 // ============================================================
 // Reviews API
 // GET /api/reviews?destinationId=...&approved=true
-// POST — public submission (creates as unapproved, rate-limited)
-// PATCH — admin approve/reply
-// DELETE — admin
+// POST · public submission (creates as unapproved, rate-limited)
+// PATCH · admin approve/reply
+// DELETE · admin
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
@@ -126,7 +126,7 @@ export async function POST(req: NextRequest) {
     userType: 'admin',
     type: 'review',
     title: `New review from ${cleanName}`,
-    message: `"${cleanTitle}" — ${r}★ awaiting approval`,
+    message: `"${cleanTitle}" · ${r}★ awaiting approval`,
     link: '#/admin',
   })
 

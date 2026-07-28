@@ -3,7 +3,7 @@
 import { Component, ReactNode } from 'react'
 
 // ============================================================
-// Error boundary — catches client-side errors and shows them
+// Error boundary · catches client-side errors and shows them
 // instead of the blank "Application error" page
 // ============================================================
 

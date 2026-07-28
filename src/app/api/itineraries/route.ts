@@ -1,9 +1,9 @@
 // ============================================================
-// Itineraries API — admin builder
-// GET /api/itineraries — list
-// POST — create
-// PATCH — update
-// DELETE — delete
+// Itineraries API · admin builder
+// GET /api/itineraries · list
+// POST · create
+// PATCH · update
+// DELETE · delete
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

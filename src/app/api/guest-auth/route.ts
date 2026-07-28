@@ -1,9 +1,9 @@
 // ============================================================
-// Guest auth — PIN-based login for guest portal
-// POST /api/guest-auth { email, pin }  — login
-// POST /api/guest-auth?action=register { name, email, phone, pin } — register
-// GET /api/guest-auth — current session
-// DELETE /api/guest-auth — logout
+// Guest auth · PIN-based login for guest portal
+// POST /api/guest-auth { email, pin }  · login
+// POST /api/guest-auth?action=register { name, email, phone, pin } · register
+// GET /api/guest-auth · current session
+// DELETE /api/guest-auth · logout
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

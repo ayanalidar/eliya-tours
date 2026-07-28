@@ -1,8 +1,8 @@
 // ============================================================
-// Bookings API — online booking + payment
-// POST /api/bookings — create booking (public)
-// GET /api/bookings — list (admin or guest-self)
-// PATCH /api/bookings — update payment status
+// Bookings API · online booking + payment
+// POST /api/bookings · create booking (public)
+// GET /api/bookings · list (admin or guest-self)
+// PATCH /api/bookings · update payment status
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
@@ -138,7 +138,7 @@ export async function POST(req: NextRequest) {
     userType: 'admin',
     type: 'booking',
     title: `New booking ${reference}`,
-    message: `${guestName} booked ${packageName} — ₹${totalAmount.toLocaleString('en-IN')}`,
+    message: `${guestName} booked ${packageName} · ₹${totalAmount.toLocaleString('en-IN')}`,
     link: '#/admin',
   })
 

@@ -7,12 +7,12 @@ import { destinations as fallbackDestinations, type Destination } from '@/lib/de
 import { safeStringArray } from '@/lib/safe-parse'
 
 const AREA_DESCRIPTIONS: Record<string, string> = {
-  'Kashmir Valley': 'Srinagar, Dal, Pampore, Sonmarg & Gurez — the heart of the Valley',
-  'Pir Panjal Range': 'Gulmarg, Tangmarg, Yusmarg & Lolab — the western mountains',
-  'Lidder Valley': 'Pahalgam & Aru — pine forests and the great Himalayan wall',
-  'Zabarwan Range': 'Dachigam — wilderness on Srinagar\'s doorstep',
-  'Jammu Region': 'Vaishno Devi & Patnitop — pilgrimage and plateau meadows',
-  'Ladakh': 'Leh, Nubra, Pangong, Kargil, Zanskar & Tso Moriri — trans-Himalaya',
+  'Kashmir Valley': 'Srinagar, Dal, Pampore, Sonmarg & Gurez · the heart of the Valley',
+  'Pir Panjal Range': 'Gulmarg, Tangmarg, Yusmarg & Lolab · the western mountains',
+  'Lidder Valley': 'Pahalgam & Aru · pine forests and the great Himalayan wall',
+  'Zabarwan Range': 'Dachigam · wilderness on Srinagar\'s doorstep',
+  'Jammu Region': 'Vaishno Devi & Patnitop · pilgrimage and plateau meadows',
+  'Ladakh': 'Leh, Nubra, Pangong, Kargil, Zanskar & Tso Moriri · trans-Himalaya',
 }
 
 export function DestinationsPage() {
@@ -67,7 +67,7 @@ export function DestinationsPage() {
           </div>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">Every valley. One local team.</h1>
           <p className="mt-3 text-base sm:text-lg text-stone-300 max-w-2xl">
-            From the floating vegetable market on Dal Lake to the frozen Zanskar river — every Eliya destination grouped by its natural region.
+            From the floating vegetable market on Dal Lake to the frozen Zanskar river · every Eliya destination grouped by its natural region.
           </p>
         </div>
       </div>

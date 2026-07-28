@@ -76,7 +76,7 @@ export function AdventuresPage() {
           </div>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">Earn your altitude.</h1>
           <p className="mt-3 text-base sm:text-lg text-stone-300 max-w-2xl">
-            From heli-skiing the Pir Panjal to the frozen Zanskar Chadar trek, paragliding at Sanasar, ice-climbing Drung waterfall, and Bactrian camel rides on the Hunder dunes — every adventure is led by certified local guides.
+            From heli-skiing the Pir Panjal to the frozen Zanskar Chadar trek, paragliding at Sanasar, ice-climbing Drung waterfall, and Bactrian camel rides on the Hunder dunes · every adventure is led by certified local guides.
           </p>
         </div>
       </div>

@@ -63,7 +63,7 @@ export function HotelsPage() {
           </div>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">Where you&apos;ll sleep.</h1>
           <p className="mt-3 text-base sm:text-lg text-stone-300 max-w-2xl">
-            From cedar houseboats on Nigeen Lake to 5-star heritage palaces and high-altitude camps at Pangong — every property is vetted by our Srinagar team.
+            From cedar houseboats on Nigeen Lake to 5-star heritage palaces and high-altitude camps at Pangong · every property is vetted by our Srinagar team.
           </p>
         </div>
       </div>

@@ -7,18 +7,18 @@ import { useNav } from '@/lib/router'
 import { destinations as fallbackDestinations, type Destination } from '@/lib/destinations'
 
 // ============================================================
-// New destinations section — destinations grouped by area,
+// New destinations section · destinations grouped by area,
 // no magnifier. Pulls from /api/destinations (DB) with
 // fallback to static data.
 // ============================================================
 
 const AREA_DESCRIPTIONS: Record<string, { title: string; subtitle: string }> = {
-  'Kashmir Valley': { title: 'Kashmir Valley', subtitle: 'Srinagar, Dal, Pampore, Sonmarg & Gurez — the heart of the Valley' },
-  'Pir Panjal Range': { title: 'Pir Panjal Range', subtitle: 'Gulmarg, Tangmarg, Yusmarg & Lolab — the western mountains' },
-  'Lidder Valley': { title: 'Lidder Valley', subtitle: 'Pahalgam & Aru — pine forests and the great Himalayan wall' },
-  'Zabarwan Range': { title: 'Zabarwan Range', subtitle: 'Dachigam — wilderness on Srinagar\'s doorstep' },
-  'Jammu Region': { title: 'Jammu Region', subtitle: 'Vaishno Devi & Patnitop — pilgrimage and plateau meadows' },
-  'Ladakh': { title: 'Ladakh', subtitle: 'Leh, Nubra, Pangong, Kargil, Zanskar & Tso Moriri — trans-Himalaya' },
+  'Kashmir Valley': { title: 'Kashmir Valley', subtitle: 'Srinagar, Dal, Pampore, Sonmarg & Gurez · the heart of the Valley' },
+  'Pir Panjal Range': { title: 'Pir Panjal Range', subtitle: 'Gulmarg, Tangmarg, Yusmarg & Lolab · the western mountains' },
+  'Lidder Valley': { title: 'Lidder Valley', subtitle: 'Pahalgam & Aru · pine forests and the great Himalayan wall' },
+  'Zabarwan Range': { title: 'Zabarwan Range', subtitle: 'Dachigam · wilderness on Srinagar\'s doorstep' },
+  'Jammu Region': { title: 'Jammu Region', subtitle: 'Vaishno Devi & Patnitop · pilgrimage and plateau meadows' },
+  'Ladakh': { title: 'Ladakh', subtitle: 'Leh, Nubra, Pangong, Kargil, Zanskar & Tso Moriri · trans-Himalaya' },
 }
 
 export function DestinationsSection() {
@@ -86,7 +86,7 @@ export function DestinationsSection() {
           </h2>
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-stone-600 max-w-2xl">
             From the floating vegetable market on Dal Lake to the frozen Zanskar river, every Eliya
-            destination is grouped by its natural region — click any card to open the full destination
+            destination is grouped by its natural region · click any card to open the full destination
             guide with weather, hotels, itinerary and pricing.
           </p>
         </div>
@@ -148,7 +148,7 @@ export function DestinationsSection() {
 }
 
 // ============================================================
-// Destination card — no magnifier, click to navigate
+// Destination card · no magnifier, click to navigate
 // ============================================================
 function DestinationCard({ destination, onClick }: { destination: Destination; onClick: () => void }) {
   const ref = useRef<HTMLButtonElement>(null)

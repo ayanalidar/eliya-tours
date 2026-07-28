@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { AlertTriangle, CloudSnow, CloudRain, Wind, Sun, X } from 'lucide-react'
 
 // ============================================================
-// Weather alert — checks destination's forecast and shows a
+// Weather alert · checks destination's forecast and shows a
 // warning banner if severe weather is expected in next 4 days
 // ============================================================
 
@@ -31,7 +31,7 @@ function analyzeWeather(daily: {
     if ([71, 73, 75, 85, 86].includes(c)) {
       alerts.push({
         level: 'warning',
-        message: `Heavy snow expected ${i === 0 ? 'today' : i === 1 ? 'tomorrow' : `in ${i} days`}. Road closures possible — check with us before travelling.`,
+        message: `Heavy snow expected ${i === 0 ? 'today' : i === 1 ? 'tomorrow' : `in ${i} days`}. Road closures possible · check with us before travelling.`,
         Icon: CloudSnow,
       })
     }

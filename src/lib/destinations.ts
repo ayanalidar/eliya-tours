@@ -1,5 +1,5 @@
 // ============================================================
-// Eliya Tours And Travels — Kashmir destination & itinerary data
+// Eliya Tours And Travels · Kashmir destination & itinerary data
 // ============================================================
 
 export type Destination = {
@@ -32,12 +32,12 @@ export const destinations: Destination[] = [
     region: 'Srinagar',
     area: 'Kashmir Valley',
     elevation: '1,585 m',
-    bestSeason: 'Apr — Oct',
+    bestSeason: 'Apr · Oct',
     tagline: 'The Venice of the East',
     description:
       'Drift along Dal Lake on a hand-carved shikara, sleep on a cedar houseboat, and lose yourself in the symmetry of Mughal gardens laid out by emperors four centuries ago.',
     longDescription:
-      'Srinagar is the summer capital of Jammu & Kashmir and the gateway to every Eliya itinerary. The city wraps around Dal Lake and Nigeen Lake, with the Zabarwan Hills rising to the east. Our guests stay on traditional houseboats moored on Nigeen Lake — quieter than Dal, with the same Himalayan reflections. Mornings begin with a floating-vegetable-market shikara ride; afternoons are for the Mughal gardens of Shalimar, Nishat and Chashme Shahi; evenings end with kahwa on the prow of the boat as the sun sets behind the Pir Panjal range.',
+      'Srinagar is the summer capital of Jammu & Kashmir and the gateway to every Eliya itinerary. The city wraps around Dal Lake and Nigeen Lake, with the Zabarwan Hills rising to the east. Our guests stay on traditional houseboats moored on Nigeen Lake · quieter than Dal, with the same Himalayan reflections. Mornings begin with a floating-vegetable-market shikara ride; afternoons are for the Mughal gardens of Shalimar, Nishat and Chashme Shahi; evenings end with kahwa on the prow of the boat as the sun sets behind the Pir Panjal range.',
     image:
       'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1600&q=80',
     accent: 'oklch(0.62 0.13 165)',
@@ -57,12 +57,12 @@ export const destinations: Destination[] = [
     region: 'Baramulla',
     area: 'Pir Panjal Range',
     elevation: '2,650 m',
-    bestSeason: 'Dec — Mar (ski) / May — Sep (meadow)',
+    bestSeason: 'Dec · Mar (ski) / May · Sep (meadow)',
     tagline: 'The Meadow of Flowers',
     description:
       'In winter, the highest gondola in the world drops you into chest-deep Himalayan powder. In summer, the same meadow bursts into a carpet of alpine wildflowers.',
     longDescription:
-      'Gulmarg sits at 2,650 m in the Pir Panjal range, a 90-minute drive from Srinagar. The Gulmarg Gondola — the second-highest cable car in the world — climbs to Apharwat Peak at 4,390 m, serving some of the longest, steepest and driest powder runs on the planet. Eliya partners with certified guides from the Indian Institute of Skiing and Mountaineering for every off-piste day. In summer the snow recedes to reveal a rolling meadow dotted with ponies, the 18-hole Gulmarg Golf Club (the highest green golf course in the world), and a network of day hikes to Khilanmarg and Alpather Lake.',
+      'Gulmarg sits at 2,650 m in the Pir Panjal range, a 90-minute drive from Srinagar. The Gulmarg Gondola · the second-highest cable car in the world · climbs to Apharwat Peak at 4,390 m, serving some of the longest, steepest and driest powder runs on the planet. Eliya partners with certified guides from the Indian Institute of Skiing and Mountaineering for every off-piste day. In summer the snow recedes to reveal a rolling meadow dotted with ponies, the 18-hole Gulmarg Golf Club (the highest green golf course in the world), and a network of day hikes to Khilanmarg and Alpather Lake.',
     image:
       'https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=1600&q=80',
     accent: 'oklch(0.72 0.17 65)',
@@ -82,12 +82,12 @@ export const destinations: Destination[] = [
     region: 'Anantnag',
     area: 'Lidder Valley',
     elevation: '2,240 m',
-    bestSeason: 'Apr — Nov',
+    bestSeason: 'Apr · Nov',
     tagline: 'The Valley of Shepherds',
     description:
-      'Pine forests, glacial rivers and the start of the Amarnath trail. Pahalgam is where Kashmir slows down — pony rides to Aru, white-water on the Lidder, evenings by a campfire.',
+      'Pine forests, glacial rivers and the start of the Amarnath trail. Pahalgam is where Kashmir slows down · pony rides to Aru, white-water on the Lidder, evenings by a campfire.',
     longDescription:
-      'Pahalgam — "the village of shepherds" — sits at the confluence of the Lidder River and Sheshnag Lake streams, 95 km from Srinagar. It is the base for the annual Amarnath Yatra pilgrimage and for treks into the Great Himalayan Range. Eliya offers guided day hikes to Aru Valley, Betaab Valley and Chandanwari, plus overnight pack-pony expeditions to Kolahoi Glacier. The Lidder runs cold and clear through town — trout fishing permits and tackle are arranged by our local team.',
+      'Pahalgam · "the village of shepherds" · sits at the confluence of the Lidder River and Sheshnag Lake streams, 95 km from Srinagar. It is the base for the annual Amarnath Yatra pilgrimage and for treks into the Great Himalayan Range. Eliya offers guided day hikes to Aru Valley, Betaab Valley and Chandanwari, plus overnight pack-pony expeditions to Kolahoi Glacier. The Lidder runs cold and clear through town · trout fishing permits and tackle are arranged by our local team.',
     image:
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80',
     accent: 'oklch(0.42 0.08 145)',
@@ -107,12 +107,12 @@ export const destinations: Destination[] = [
     region: 'Ganderbal',
     area: 'Kashmir Valley',
     elevation: '2,800 m',
-    bestSeason: 'May — Oct',
+    bestSeason: 'May · Oct',
     tagline: 'The Meadow of Gold',
     description:
-      'The last town on the Srinagar–Ladakh road. From here, the road climbs toward Zoji La — gateway to Ladakh — and the Thajiwas Glacier spills right down into the meadow.',
+      'The last town on the Srinagar–Ladakh road. From here, the road climbs toward Zoji La · gateway to Ladakh · and the Thajiwas Glacier spills right down into the meadow.',
     longDescription:
-      'Sonmarg sits at 2,800 m, three hours northeast of Srinagar on the Sindh River. The meadow earns its name — "meadow of gold" — from the late-summer wildflowers that turn the slopes amber. Thajiwas Glacier is reachable on foot or by pony from town; for the more adventurous, the three-day trek to Vishansar, Krishansar and Gangabal Lakes begins at nearby Nichinai Pass. Sonmarg is also where Eliya stages the start of the trans-Himalayan journey to Ladakh.',
+      'Sonmarg sits at 2,800 m, three hours northeast of Srinagar on the Sindh River. The meadow earns its name · "meadow of gold" · from the late-summer wildflowers that turn the slopes amber. Thajiwas Glacier is reachable on foot or by pony from town; for the more adventurous, the three-day trek to Vishansar, Krishansar and Gangabal Lakes begins at nearby Nichinai Pass. Sonmarg is also where Eliya stages the start of the trans-Himalayan journey to Ladakh.',
     image:
       'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80',
     accent: 'oklch(0.82 0.14 80)',
@@ -132,12 +132,12 @@ export const destinations: Destination[] = [
     region: 'Badgam',
     area: 'Pir Panjal Range',
     elevation: '2,396 m',
-    bestSeason: 'May — Oct',
+    bestSeason: 'May · Oct',
     tagline: 'The Hidden Meadow',
     description:
       'The Kashmir that locals keep to themselves. A quiet alpine meadow ringed by pine forest, with day hikes to Doodh Ganga and the frozen lake of Nilnag.',
     longDescription:
-      'Yusmarg — "the meadow of Jesus" — is the off-the-radar counterpart to Gulmarg and Pahalgam. Just 47 km from Srinagar but with a fraction of the crowds, it remains a quiet grazing meadow surrounded by dense pine. Eliya brings guests here for the silence: a day walk along the Doodh Ganga ("river of milk") to a cascading waterfall, or a pony trek to the sapphire Nilnag Lake at 4,000 m. There are no hotels here — only a small Eliya-managed eco-camp with six canvas tents and a cedar-fire kitchen.',
+      'Yusmarg · "the meadow of Jesus" · is the off-the-radar counterpart to Gulmarg and Pahalgam. Just 47 km from Srinagar but with a fraction of the crowds, it remains a quiet grazing meadow surrounded by dense pine. Eliya brings guests here for the silence: a day walk along the Doodh Ganga ("river of milk") to a cascading waterfall, or a pony trek to the sapphire Nilnag Lake at 4,000 m. There are no hotels here · only a small Eliya-managed eco-camp with six canvas tents and a cedar-fire kitchen.',
     image:
       'https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=1600&q=80',
     accent: 'oklch(0.32 0.06 165)',
@@ -157,12 +157,12 @@ export const destinations: Destination[] = [
     region: 'Harwan',
     area: 'Zabarwan Range',
     elevation: '1,700 – 4,300 m',
-    bestSeason: 'Mar — Nov',
+    bestSeason: 'Mar · Nov',
     tagline: 'The Last Refuge of the Hangul',
     description:
-      'A 141 km² national park protecting the only viable population of the Kashmir stag — the hangul. Dawn walks with park rangers, leopard tracks, black bear and over 150 bird species.',
+      'A 141 km² national park protecting the only viable population of the Kashmir stag · the hangul. Dawn walks with park rangers, leopard tracks, black bear and over 150 bird species.',
     longDescription:
-      'Dachigam National Park, just 22 km from Srinagar, is the most accessible wilderness experience on the Eliya roster. The park climbs from 1,700 m at the entrance to over 4,300 m in the alpine upper reaches, hosting the critically endangered hangul (Kashmir stag), Himalayan black bear, leopard, and over 150 bird species including the Himalayan monal. Eliya holds permits for guided dawn walks accompanied by park rangers — the only way to enter the core zone. The lower Dagwan Valley trail follows a trout stream through pine and cedar; the upper Tarsar trail requires a two-day trek with overnight camp.',
+      'Dachigam National Park, just 22 km from Srinagar, is the most accessible wilderness experience on the Eliya roster. The park climbs from 1,700 m at the entrance to over 4,300 m in the alpine upper reaches, hosting the critically endangered hangul (Kashmir stag), Himalayan black bear, leopard, and over 150 bird species including the Himalayan monal. Eliya holds permits for guided dawn walks accompanied by park rangers · the only way to enter the core zone. The lower Dagwan Valley trail follows a trout stream through pine and cedar; the upper Tarsar trail requires a two-day trek with overnight camp.',
     image:
       'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=80',
     accent: 'oklch(0.55 0.15 145)',
@@ -179,7 +179,7 @@ export const destinations: Destination[] = [
 ]
 
 // ============================================================
-// Genre timeline — seasonal / thematic tours across the year
+// Genre timeline · seasonal / thematic tours across the year
 // ============================================================
 
 export type GenreEra = {
@@ -201,11 +201,11 @@ export const genreTimeline: GenreEra[] = [
   {
     id: 'spring',
     season: 'Spring',
-    months: 'Mar — Apr',
+    months: 'Mar · Apr',
     title: 'Blossom & Tulip Season',
     theme: 'Mughal Gardens Awakening',
     description:
-      'The Indira Gandhi Memorial Tulip Garden opens in late March with 1.5 million blooms across 70 varieties — the largest tulip garden in Asia. The almond trees of Badamwari bloom pink against the snowmelt-fed streams, and Shalimar and Nishat gardens reopen their terraced water channels for the season.',
+      'The Indira Gandhi Memorial Tulip Garden opens in late March with 1.5 million blooms across 70 varieties · the largest tulip garden in Asia. The almond trees of Badamwari bloom pink against the snowmelt-fed streams, and Shalimar and Nishat gardens reopen their terraced water channels for the season.',
     destinations: ['Srinagar', 'Achabal', 'Verinag'],
     image:
       'https://images.unsplash.com/photo-1513415564515-763d91423bdd?auto=format&fit=crop&w=1200&q=80',
@@ -216,11 +216,11 @@ export const genreTimeline: GenreEra[] = [
   {
     id: 'summer',
     season: 'Summer',
-    months: 'May — Jul',
+    months: 'May · Jul',
     title: 'Alpine Meadows & Glacial Lakes',
     theme: 'High-Altitude Trekking',
     description:
-      'Snow recedes from the high passes and the great Kashmir treks open — the three-day Vishansar–Krishansar–Gangabal circuit, the Tarsar–Marsar twin-lakes trek, and day hikes to Thajiwas and Apharwat. Temperatures in the valley hold at a perfect 24°C.',
+      'Snow recedes from the high passes and the great Kashmir treks open · the three-day Vishansar–Krishansar–Gangabal circuit, the Tarsar–Marsar twin-lakes trek, and day hikes to Thajiwas and Apharwat. Temperatures in the valley hold at a perfect 24°C.',
     destinations: ['Sonmarg', 'Pahalgam', 'Yusmarg'],
     image:
       'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
@@ -232,11 +232,11 @@ export const genreTimeline: GenreEra[] = [
   {
     id: 'monsoon',
     season: 'Late Summer',
-    months: 'Aug — Sep',
+    months: 'Aug · Sep',
     title: 'Saffron Harvest in Pampore',
     theme: 'Cultural & Culinary',
     description:
-      'The purple crocus fields of Pampore bloom for only three weeks in late October — but the harvest rituals, kahwa-making workshops, and saffron-picking walks begin in August with the harvest preparation. Pair with the apple harvest of Shopian and the walnut groves of Anantnag.',
+      'The purple crocus fields of Pampore bloom for only three weeks in late October · but the harvest rituals, kahwa-making workshops, and saffron-picking walks begin in August with the harvest preparation. Pair with the apple harvest of Shopian and the walnut groves of Anantnag.',
     destinations: ['Pampore', 'Shopian', 'Srinagar'],
     image:
       'https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=1200&q=80',
@@ -247,11 +247,11 @@ export const genreTimeline: GenreEra[] = [
   {
     id: 'autumn',
     season: 'Autumn',
-    months: 'Oct — Nov',
+    months: 'Oct · Nov',
     title: 'Chinar Gold & Mughal Gardens',
     theme: 'Photography & Heritage',
     description:
-      'The chinar trees — brought to Kashmir by the Mughals — turn the colour of burnished copper. Nishat and Shalimar gardens become a photographer\'s dream, with falling leaves drifting across the stone water channels. The harvest season brings fresh apples, walnuts and the year\'s saffron to market.',
+      'The chinar trees · brought to Kashmir by the Mughals · turn the colour of burnished copper. Nishat and Shalimar gardens become a photographer\'s dream, with falling leaves drifting across the stone water channels. The harvest season brings fresh apples, walnuts and the year\'s saffron to market.',
     destinations: ['Srinagar', 'Dachigam', 'Aru'],
     image:
       'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80',
@@ -262,7 +262,7 @@ export const genreTimeline: GenreEra[] = [
   {
     id: 'winter',
     season: 'Winter',
-    months: 'Dec — Feb',
+    months: 'Dec · Feb',
     title: 'Heli-Ski & Frozen Waterfalls',
     theme: 'Powder & Adventure',
     description:
@@ -282,7 +282,7 @@ export const genreTimeline: GenreEra[] = [
     title: 'Houseboat Heritage Stay',
     theme: 'Slow Living',
     description:
-      'A two-night stay on a hand-carved cedar houseboat on Nigeen Lake — the quieter, deeper sister of Dal. Includes a private shikara, kahwa ceremonies, a Wazwan dinner cooked on board, and a dawn visit to the floating vegetable market.',
+      'A two-night stay on a hand-carved cedar houseboat on Nigeen Lake · the quieter, deeper sister of Dal. Includes a private shikara, kahwa ceremonies, a Wazwan dinner cooked on board, and a dawn visit to the floating vegetable market.',
     destinations: ['Srinagar'],
     image:
       'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80',
@@ -293,7 +293,7 @@ export const genreTimeline: GenreEra[] = [
 ]
 
 // ============================================================
-// 3D Virtual tour scenes — interconnected with teleport hotspots
+// 3D Virtual tour scenes · interconnected with teleport hotspots
 // ============================================================
 
 export type TourScene = {
@@ -301,7 +301,7 @@ export type TourScene = {
   name: string
   panorama: string
   description: string
-  // Initial camera yaw (degrees, 0-360) — set so at least one hotspot
+  // Initial camera yaw (degrees, 0-360) · set so at least one hotspot
   // is visible when the scene loads.
   initialYaw: number
   hotspots: {
@@ -316,7 +316,7 @@ export type TourScene = {
 export const tourScenes: TourScene[] = [
   {
     id: 'dal-lake',
-    name: 'Dal Lake — Houseboat Deck',
+    name: 'Dal Lake · Houseboat Deck',
     panorama:
       'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=85',
     description:
@@ -330,7 +330,7 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'mughal-gardens',
-    name: 'Nishat Bagh — Mughal Terrace',
+    name: 'Nishat Bagh · Mughal Terrace',
     panorama:
       'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=2400&q=85',
     description:
@@ -344,7 +344,7 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'shalimar',
-    name: 'Shalimar Bagh — Central Channel',
+    name: 'Shalimar Bagh · Central Channel',
     panorama:
       'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2400&q=85',
     description:
@@ -357,11 +357,11 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'gulmarg-meadow',
-    name: 'Gulmarg — Alpine Meadow',
+    name: 'Gulmarg · Alpine Meadow',
     panorama:
       'https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=2400&q=85',
     description:
-      'The Gulmarg bowl in summer — wildflowers stretch to the base of Apharwat Peak, where the gondola climbs to 4,390 m.',
+      'The Gulmarg bowl in summer · wildflowers stretch to the base of Apharwat Peak, where the gondola climbs to 4,390 m.',
     initialYaw: 150,
     hotspots: [
       { id: 'to-dal', targetScene: 'dal-lake', angle: 90, elevation: 0, label: 'Return to Srinagar' },
@@ -371,7 +371,7 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'pahalgam-pine',
-    name: 'Pahalgam — Lidder Riverbank',
+    name: 'Pahalgam · Lidder Riverbank',
     panorama:
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2400&q=85',
     description:
@@ -385,11 +385,11 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'aru-valley',
-    name: 'Aru Valley — Pine Glade',
+    name: 'Aru Valley · Pine Glade',
     panorama:
       'https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=2400&q=85',
     description:
-      'Aru — the last motorable village before the Great Himalayan Range. Ponies graze in the glade; the trail to Kolahoi Glacier begins at the far end of the meadow.',
+      'Aru · the last motorable village before the Great Himalayan Range. Ponies graze in the glade; the trail to Kolahoi Glacier begins at the far end of the meadow.',
     initialYaw: 90,
     hotspots: [
       { id: 'to-pahalgam', targetScene: 'pahalgam-pine', angle: 90, elevation: -3, label: 'Return to Pahalgam' },
@@ -397,11 +397,11 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'sonmarg-thajiwas',
-    name: 'Sonmarg — Thajiwas Glacier',
+    name: 'Sonmarg · Thajiwas Glacier',
     panorama:
       'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=85',
     description:
-      'Thajiwas Glacier spills into the Sonmarg meadow at 3,000 m. Even in midsummer, the ice remains — a 90-minute pony ride from town.',
+      'Thajiwas Glacier spills into the Sonmarg meadow at 3,000 m. Even in midsummer, the ice remains · a 90-minute pony ride from town.',
     initialYaw: 220,
     hotspots: [
       { id: 'to-dal', targetScene: 'dal-lake', angle: 220, elevation: 0, label: 'Return to Srinagar' },
@@ -410,11 +410,11 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'old-city',
-    name: 'Old Srinagar — Zaina Kadal Bazaar',
+    name: 'Old Srinagar · Zaina Kadal Bazaar',
     panorama:
       'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=2400&q=85',
     description:
-      'The narrow lanes of old Srinagar — pashmina weavers, copper smiths, saffron vendors and bakeries turning out fresh kulcha. The Shah-e-Hamdan shrine rises above the Jhelum.',
+      'The narrow lanes of old Srinagar · pashmina weavers, copper smiths, saffron vendors and bakeries turning out fresh kulcha. The Shah-e-Hamdan shrine rises above the Jhelum.',
     initialYaw: 180,
     hotspots: [
       { id: 'to-dal', targetScene: 'dal-lake', angle: 180, elevation: 0, label: 'Return to Dal Lake' },
@@ -423,11 +423,11 @@ export const tourScenes: TourScene[] = [
   },
   {
     id: 'pampore-saffron',
-    name: 'Pampore — Saffron Fields',
+    name: 'Pampore · Saffron Fields',
     panorama:
       'https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=2400&q=85',
     description:
-      'The saffron fields of Pampore — the only place in India where Crocus sativus grows. The harvest begins in late October and lasts three weeks.',
+      'The saffron fields of Pampore · the only place in India where Crocus sativus grows. The harvest begins in late October and lasts three weeks.',
     initialYaw: 60,
     hotspots: [
       { id: 'to-old-city', targetScene: 'old-city', angle: 60, elevation: 0, label: 'Return to Old City' },
@@ -453,9 +453,12 @@ export const companyInfo = {
   name: 'Eliya Tours And Travels',
   tagline: 'Curated Kashmir journeys since 2009',
   founded: 2009,
-  phone: '+91 94190 12345',
-  whatsapp: '+91 94190 12345',
+  ceo: 'Mohammad Yasin Malik',
+  ceoAddress: 'Malikpora, Magam',
+  phone: '+91-7006734747',
+  phone2: '+91-9419429456',
+  whatsapp: '917006734747',
   email: 'hello@eliyatours.in',
-  address: 'Boulevard Road, Nigeen Lake, Srinagar, Jammu & Kashmir 190003',
+  address: 'Malikpora, Magam, Jammu & Kashmir',
   license: 'J&K Tourism Reg. No. KT-1903-ELIYA',
 }

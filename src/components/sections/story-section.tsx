@@ -14,7 +14,7 @@ export function StorySection() {
     <section className="relative bg-stone-50 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-center">
-          {/* Left — copy */}
+          {/* Left · copy */}
           <div>
             <div className="flex items-center gap-3 mb-5">
               <span className="h-px w-10 bg-stone-900" />
@@ -36,14 +36,14 @@ export function StorySection() {
                 telling friends.
               </p>
               <p>
-                Fifteen years later, we operate across six valleys — Srinagar, Gulmarg, Pahalgam,
-                Sonmarg, Yusmarg and Dachigam — but the rule has not changed: every itinerary is
+                Fifteen years later, we operate across six valleys · Srinagar, Gulmarg, Pahalgam,
+                Sonmarg, Yusmarg and Dachigam · but the rule has not changed: every itinerary is
                 drafted by someone who lives within an hour of every place you will sleep. No call
                 centres, no middlemen, no rented-out trips.
               </p>
               <p>
                 What you see on this site is what we walk. Every photo, every trail, every houseboat
-                — ours.
+                · ours.
               </p>
             </div>
 
@@ -55,8 +55,8 @@ export function StorySection() {
                   className="w-11 h-11 rounded-full object-cover ring-2 ring-stone-200"
                 />
                 <div>
-                  <div className="text-sm font-semibold text-stone-950">Tariq Ahmad Bhat</div>
-                  <div className="text-xs text-stone-500">Founder · Eliya Tours And Travels</div>
+                  <div className="text-sm font-semibold text-stone-950">Mohammad Yasin Malik</div>
+                  <div className="text-xs text-stone-500">CEO · Eliya Tours And Travels · Malikpora, Magam</div>
                 </div>
               </div>
               <div className="text-xs text-stone-500 italic pl-4 border-l border-stone-300">
@@ -65,7 +65,7 @@ export function StorySection() {
             </div>
           </div>
 
-          {/* Right — stats card */}
+          {/* Right · stats card */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {stats.map((s) => (
               <div

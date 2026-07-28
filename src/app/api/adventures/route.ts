@@ -1,7 +1,7 @@
 // ============================================================
 // Adventure sports API
-// GET /api/adventures — list all (or filter by ?category= or ?destinationId=)
-// POST/PATCH/DELETE — admin only
+// GET /api/adventures · list all (or filter by ?category= or ?destinationId=)
+// POST/PATCH/DELETE · admin only
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

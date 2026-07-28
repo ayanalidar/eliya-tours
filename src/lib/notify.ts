@@ -1,5 +1,5 @@
 // ============================================================
-// Notification helper — used by all APIs to push notifications
+// Notification helper · used by all APIs to push notifications
 // to admin or guest users.
 // ============================================================
 import { db } from '@/lib/db'

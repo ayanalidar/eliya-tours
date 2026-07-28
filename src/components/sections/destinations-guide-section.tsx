@@ -119,7 +119,7 @@ export function CircularProgress({
 }
 
 // ============================================================
-// Guide card — a single destination with four rings
+// Guide card · a single destination with four rings
 // ============================================================
 function GuideCard({ destination, index, onOpen }: { destination: Destination; index: number; onOpen: () => void }) {
   // Build four stat rings: rating (out of 5 → %), curated, visitors, safety
@@ -260,7 +260,7 @@ function GuideCard({ destination, index, onOpen }: { destination: Destination; i
 
       {/* Index number watermark */}
       <div className="absolute top-3 right-4 text-stone-200/80 text-xs font-medium tabular-nums z-10 hidden lg:block">
-        — {String(index + 1).padStart(2, '0')} —
+        · {String(index + 1).padStart(2, '0')} ·
       </div>
     </article>
   )
@@ -325,7 +325,7 @@ export function DestinationsGuideSection() {
             <span className="italic font-light text-stone-500"> measured honestly.</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-stone-600">
-            Each ring is a number we live by — the percentage of trails our team has personally
+            Each ring is a number we live by · the percentage of trails our team has personally
             walked, the safety index from a decade of operating in the region, and the visitor-load
             we cap so the meadow stays a meadow. No marketing inflation. Just the data we use to
             plan your trip.
@@ -365,7 +365,7 @@ export function DestinationsGuideSection() {
                 Eliya-curated
               </div>
               <p className="mt-1 text-xs text-stone-500 leading-relaxed">
-                Percentage of routes, stays and experiences owned or directly operated by Eliya —
+                Percentage of routes, stays and experiences owned or directly operated by Eliya ·
                 no third-party middlemen.
               </p>
             </div>

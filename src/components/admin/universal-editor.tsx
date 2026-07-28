@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Edit, Trash2, Check, X, Search, Database } from 'lucide-react'
 
 // ============================================================
-// Universal data editor — lets admins edit ANY table's records
+// Universal data editor · lets admins edit ANY table's records
 // ============================================================
 
 type TableDef = {

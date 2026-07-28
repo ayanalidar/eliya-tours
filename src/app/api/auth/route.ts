@@ -1,5 +1,5 @@
 // ============================================================
-// Eliya Tours API — admin PIN authentication
+// Eliya Tours API · admin PIN authentication
 // POST /api/auth  { email, pin }  -> { token, user }
 // GET  /api/auth
 // DELETE /api/auth

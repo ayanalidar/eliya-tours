@@ -5,7 +5,7 @@ import { Star, Loader2, Check, X, Plus } from 'lucide-react'
 import { useApp } from '@/lib/app-context'
 
 // ============================================================
-// Reviews widget — shows approved reviews + a submit form
+// Reviews widget · shows approved reviews + a submit form
 // ============================================================
 
 type Review = {

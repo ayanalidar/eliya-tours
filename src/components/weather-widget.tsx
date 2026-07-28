@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Cloud, CloudRain, CloudSnow, CloudSun, Cloudy, Sun, Sunrise, Sunset, Wind, Droplets, Gauge, Loader2, CloudFog, Zap } from 'lucide-react'
 
 // ============================================================
-// Weather widget — fetches from /api/weather (Open-Meteo proxy)
+// Weather widget · fetches from /api/weather (Open-Meteo proxy)
 // Shows current conditions + 3-day forecast for a destination
 // ============================================================
 
@@ -64,7 +64,7 @@ const WMO: Record<number, { label: string; Icon: typeof Sun }> = {
 }
 
 function wmoInfo(code: number) {
-  return WMO[code] || { label: '—', Icon: Cloud }
+  return WMO[code] || { label: '·', Icon: Cloud }
 }
 
 function formatTime(iso: string) {

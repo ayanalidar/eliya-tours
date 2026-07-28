@@ -11,7 +11,7 @@ import { UniversalEditor } from '@/components/admin/universal-editor'
 import { safeJsonParse } from '@/lib/safe-parse'
 
 // ============================================================
-// Admin panel — PIN-based login + CMS
+// Admin panel · PIN-based login + CMS
 // ============================================================
 
 type AdminUser = { id: string; name: string; email: string; role: string }
@@ -300,7 +300,7 @@ function Dashboard({ user, setTab }: { user: AdminUser; setTab: (t: TabId) => vo
         <ul className="text-xs text-stone-300 space-y-1.5">
           <li>• View &amp; respond to enquiries from the &quot;Plan my trip&quot; form</li>
           <li>• Manage bookings, mark payments as received</li>
-          <li>• Add/edit destinations, adventures, seasons, hotels — upload images directly</li>
+          <li>• Add/edit destinations, adventures, seasons, hotels · upload images directly</li>
           <li>• Approve guest reviews &amp; reply to them</li>
           <li>• Create offers &amp; promo codes for the booking page</li>
           <li>• Set seasonal hotel pricing (per-month multipliers)</li>
@@ -403,7 +403,7 @@ function EnquiriesManager() {
 }
 
 // ============================================================
-// Destinations manager — list + edit + add
+// Destinations manager · list + edit + add
 // ============================================================
 function DestinationsManager() {
   const [items, setItems] = useState<Array<Record<string, unknown>>>([])
@@ -524,7 +524,7 @@ function DestinationEditor({ initial, onSave, onCancel }: { initial: Record<stri
 }
 
 // ============================================================
-// Seasons manager (simplified — list + edit)
+// Seasons manager (simplified · list + edit)
 // ============================================================
 function SeasonsManager() {
   const [items, setItems] = useState<Array<Record<string, unknown>>>([])
@@ -745,7 +745,7 @@ function HotelEditor({ initial, destinations, onSave, onCancel }: { initial: Rec
 }
 
 // ============================================================
-// Invoices manager — create, list, download
+// Invoices manager · create, list, download
 // ============================================================
 function InvoicesManager({ user }: { user: AdminUser }) {
   const [items, setItems] = useState<Array<Record<string, unknown>>>([])
@@ -798,7 +798,7 @@ function InvoicesManager({ user }: { user: AdminUser }) {
         .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #fef3c7; color: #92400e; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
       </style></head><body>
       <h1>Eliya Tours And Travels</h1>
-      <h2>Boulevard Road, Nigeen Lake, Srinagar, J&amp;K 190003 · +91 94190 12345 · hello@eliyatours.in</h2>
+      <h2>Malikpora, Magam, Jammu &amp; Kashmir · +91-7006734747 | +91-9419429456 · hello@eliyatours.in</h2>
       <div class="meta">
         <div>
           <div><strong>Invoice:</strong> ${inv.number}</div>
@@ -875,7 +875,7 @@ function InvoicesManager({ user }: { user: AdminUser }) {
               <div className="flex items-center gap-3">
                 <div className="text-right">
                   <div className="text-sm font-semibold tabular-nums text-stone-950">₹{Number(inv.totalAmount).toLocaleString('en-IN')}</div>
-                  <div className="text-[10px] text-stone-500">{inv.packageName as string || '—'}</div>
+                  <div className="text-[10px] text-stone-500">{inv.packageName as string || '·'}</div>
                 </div>
                 <button onClick={() => download(inv)} className="grid place-items-center w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors" aria-label="Download">
                   <Download className="w-4 h-4" />
@@ -908,7 +908,7 @@ function Field({ label, value, onChange, type = 'text' }: { label: string; value
 }
 
 // ============================================================
-// Image upload component — drag/drop or click, returns URL
+// Image upload component · drag/drop or click, returns URL
 // ============================================================
 function ImageUpload({ value, onChange }: { value: string; onChange: (url: string) => void }) {
   const [uploading, setUploading] = useState(false)
@@ -1080,7 +1080,7 @@ function OffersManager() {
 }
 
 // ============================================================
-// Reviews Manager — approve/reject + reply
+// Reviews Manager · approve/reject + reply
 // ============================================================
 function ReviewsManager() {
   const [items, setItems] = useState<Array<Record<string, unknown>>>([])
@@ -1151,7 +1151,7 @@ function ReviewsManager() {
                       <span className="text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full">Pending</span>
                     )}
                   </div>
-                  <div className="text-xs text-stone-500 mt-0.5">{r.guestEmail as string} · {r.destinationId as string || '—'} · {new Date(r.createdAt as string).toLocaleDateString('en-IN')}</div>
+                  <div className="text-xs text-stone-500 mt-0.5">{r.guestEmail as string} · {r.destinationId as string || '·'} · {new Date(r.createdAt as string).toLocaleDateString('en-IN')}</div>
                 </div>
                 <div className="flex gap-2">
                   {!r.approved && (
@@ -1237,7 +1237,7 @@ function BookingsManager() {
                 </div>
                 <div className="text-right">
                   <div className="text-lg font-semibold tabular-nums text-stone-950">₹{Number(b.totalAmount).toLocaleString('en-IN')}</div>
-                  <div className="text-[10px] text-stone-400 uppercase tracking-[0.18em]">{b.currency as string} · {b.paymentMethod as string || '—'}</div>
+                  <div className="text-[10px] text-stone-400 uppercase tracking-[0.18em]">{b.currency as string} · {b.paymentMethod as string || '·'}</div>
                   {b.paymentStatus !== 'paid' && (
                     <button onClick={() => markPaid(b.id as string)} className="mt-2 text-xs inline-flex items-center gap-1 bg-green-50 text-green-700 hover:bg-green-100 ring-1 ring-green-200 px-2.5 py-1 rounded-full">
                       <Check className="w-3 h-3" /> Mark paid
@@ -1465,7 +1465,7 @@ function PricingManager() {
 }
 
 // ============================================================
-// Itineraries Manager — basic drag-drop day planner
+// Itineraries Manager · basic drag-drop day planner
 // ============================================================
 function ItinerariesManager({ user }: { user: AdminUser }) {
   const [items, setItems] = useState<Array<Record<string, unknown>>>([])
@@ -1533,7 +1533,7 @@ function ItinerariesManager({ user }: { user: AdminUser }) {
               <div key={it.id as string} className="bg-white ring-1 ring-stone-200 rounded-2xl p-4 flex items-center justify-between gap-3">
                 <div>
                   <h3 className="font-semibold text-stone-950 text-sm">{it.name as string}</h3>
-                  <p className="text-xs text-stone-500 mt-0.5">{days.length} days · ₹{Number(it.totalCost).toLocaleString('en-IN')} · by {it.createdBy as string || '—'}</p>
+                  <p className="text-xs text-stone-500 mt-0.5">{days.length} days · ₹{Number(it.totalCost).toLocaleString('en-IN')} · by {it.createdBy as string || '·'}</p>
                   {it.description && <p className="text-xs text-stone-600 mt-1">{it.description as string}</p>}
                 </div>
                 <div className="flex items-center gap-2">

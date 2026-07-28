@@ -67,23 +67,24 @@ export function ContactPage() {
           <div>
             <h2 className="text-xl font-semibold tracking-tight text-stone-950 mb-4">Get in touch directly</h2>
             <div className="space-y-3">
-              <a href="tel:+919419012345" className="flex items-center gap-4 p-4 rounded-2xl bg-white ring-1 ring-stone-200 hover:ring-stone-300 transition-all group">
+              <a href="tel:+917006734747" className="flex items-center gap-4 p-4 rounded-2xl bg-white ring-1 ring-stone-200 hover:ring-stone-300 transition-all group">
                 <span className="grid place-items-center w-11 h-11 rounded-full bg-stone-100 text-stone-700 group-hover:bg-stone-900 group-hover:text-amber-50 transition-colors">
                   <Phone className="w-4 h-4" />
                 </span>
                 <div className="flex-1">
                   <div className="text-[10px] uppercase tracking-[0.2em] text-stone-500">Call us</div>
-                  <div className="text-sm font-medium text-stone-950">+91 94190 12345</div>
+                  <div className="text-sm font-medium text-stone-950">+91-7006734747</div>
+                  <div className="text-sm font-medium text-stone-950">+91-9419429456</div>
                 </div>
-                <span className="text-[10px] text-stone-500">Mon — Sat · 9am — 8pm IST</span>
+                <span className="text-[10px] text-stone-500">Mon to Sat · 9am to 8pm IST</span>
               </a>
-              <a href="https://wa.me/919419012345" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-2xl bg-white ring-1 ring-stone-200 hover:ring-stone-300 transition-all group">
+              <a href="https://wa.me/917006734747" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-2xl bg-white ring-1 ring-stone-200 hover:ring-stone-300 transition-all group">
                 <span className="grid place-items-center w-11 h-11 rounded-full bg-green-100 text-green-700 group-hover:bg-green-500 group-hover:text-white transition-colors">
                   <MessageCircle className="w-4 h-4" />
                 </span>
                 <div className="flex-1">
                   <div className="text-[10px] uppercase tracking-[0.2em] text-stone-500">WhatsApp</div>
-                  <div className="text-sm font-medium text-stone-950">+91 94190 12345</div>
+                  <div className="text-sm font-medium text-stone-950">+91-7006734747</div>
                 </div>
                 <span className="text-[10px] text-green-600">Fastest reply</span>
               </a>
@@ -102,7 +103,7 @@ export function ContactPage() {
                 </span>
                 <div className="flex-1">
                   <div className="text-[10px] uppercase tracking-[0.2em] text-stone-500">Visit our office</div>
-                  <div className="text-sm font-medium text-stone-950 leading-relaxed">Boulevard Road, Nigeen Lake, Srinagar, Jammu &amp; Kashmir 190003</div>
+                  <div className="text-sm font-medium text-stone-950 leading-relaxed">Malikpora, Magam, Jammu &amp; Kashmir</div>
                 </div>
               </div>
             </div>
@@ -112,7 +113,7 @@ export function ContactPage() {
           <div>
             <form onSubmit={onSubmit} className="bg-white ring-1 ring-stone-200 rounded-3xl p-6 sm:p-8 eliya-shadow-soft">
               <h2 className="text-xl font-semibold tracking-tight text-stone-950">Enquiry form</h2>
-              <p className="text-sm text-stone-500 mt-1">Your enquiry is saved to our system — Tariq or Imran will reply within 24 hours.</p>
+              <p className="text-sm text-stone-500 mt-1">Your enquiry is saved to our system · Tariq or Imran will reply within 24 hours.</p>
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-[11px] uppercase tracking-[0.18em] text-stone-500 font-medium block mb-1.5">Your name *</label>
@@ -147,7 +148,7 @@ export function ContactPage() {
                 </div>
               </div>
               <button type="submit" disabled={submitted} className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-stone-900 text-amber-50 rounded-full py-3.5 text-sm font-semibold hover:bg-stone-700 transition-all disabled:opacity-70">
-                {submitted ? (<><Check className="w-4 h-4" /> Enquiry received — we&apos;ll reply within 24h</>) : (<><Send className="w-4 h-4" /> Send my enquiry</>)}
+                {submitted ? (<><Check className="w-4 h-4" /> Enquiry received · we&apos;ll reply within 24h</>) : (<><Send className="w-4 h-4" /> Send my enquiry</>)}
               </button>
             </form>
           </div>

@@ -15,7 +15,7 @@ import { tourScenes, type TourScene } from '@/lib/destinations'
 // transform. Clicking a hotspot teleports to its target scene.
 //
 // Camera state is owned by an inner <PanoramaStage/> component that is
-// remounted (via key={sceneIdx}) when the scene changes — this resets
+// remounted (via key={sceneIdx}) when the scene changes · this resets
 // the camera without calling setState synchronously inside an effect.
 // ============================================================
 
@@ -87,7 +87,7 @@ function Hotspot({
 }
 
 // ============================================================
-// Panorama stage — owns the camera state for the current scene.
+// Panorama stage · owns the camera state for the current scene.
 // Remounted on scene change so the camera resets cleanly.
 // ============================================================
 function PanoramaStage({
@@ -114,7 +114,7 @@ function PanoramaStage({
   const containerRef = useRef<HTMLDivElement>(null)
   const dragState = useRef<{ x: number; y: number; yaw: number; pitch: number } | null>(null)
 
-  // Camera state — fresh mount per scene means these reset to defaults automatically.
+  // Camera state · fresh mount per scene means these reset to defaults automatically.
   // initialYaw is set per-scene so at least one hotspot is in view on load.
   const [yaw, setYaw] = useState(scene.initialYaw)
   const [pitch, setPitch] = useState(0)
@@ -191,7 +191,7 @@ function PanoramaStage({
           </span>
           <GripVertical className="w-3.5 h-3.5 text-amber-50" />
         </div>
-        {/* Grip dots row — visual affordance */}
+        {/* Grip dots row · visual affordance */}
         <div className="flex items-center gap-1">
           {[0, 1, 2, 3, 4].map((i) => (
             <span key={i} className="w-1 h-1 rounded-full bg-amber-50/40" />
@@ -261,7 +261,7 @@ function PanoramaStage({
         </div>
       </div>
 
-      {/* ===== HUD: bottom bar — scene description + scene picker ===== */}
+      {/* ===== HUD: bottom bar · scene description + scene picker ===== */}
       <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pointer-events-none">
         {/* description */}
         <div className="max-w-xl text-amber-50 pointer-events-auto">
@@ -285,7 +285,7 @@ function PanoramaStage({
 }
 
 // ============================================================
-// Section — owns scene + transition state, mounts PanoramaStage
+// Section · owns scene + transition state, mounts PanoramaStage
 // with a key so camera resets cleanly on teleport.
 // ============================================================
 export function VirtualTourSection() {
@@ -322,7 +322,7 @@ export function VirtualTourSection() {
             <div className="flex items-center gap-3 mb-5">
               <span className="h-px w-10 bg-stone-900" />
               <span className="text-[11px] uppercase tracking-[0.32em] text-stone-500 font-medium">
-                Walk before you walk — the Eliya 360° tour
+                Walk before you walk · the Eliya 360° tour
               </span>
             </div>
             <h2 className="text-balance text-3xl sm:text-5xl font-semibold tracking-tight text-stone-950 leading-[1.1]">
@@ -330,8 +330,8 @@ export function VirtualTourSection() {
               <span className="italic font-light text-stone-500"> Teleport between nine locations.</span>
             </h2>
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-stone-600">
-              Stand on the deck of a Dal Lake houseboat at dawn. Look right — there&apos;s Nishat Garden.
-              Look left — the old city bazaar. Click a glowing pin to teleport to the next scene.
+              Stand on the deck of a Dal Lake houseboat at dawn. Look right · there&apos;s Nishat Garden.
+              Look left · the old city bazaar. Click a glowing pin to teleport to the next scene.
               Nine interconnected locations across the Kashmir Valley.
             </p>
           </div>
@@ -390,7 +390,7 @@ export function VirtualTourSection() {
                   <li className="flex items-start gap-3">
                     <span className="grid place-items-center w-6 h-6 rounded-full bg-stone-200 text-[11px] font-semibold text-stone-700 shrink-0">2</span>
                     <span>
-                      <span className="font-medium text-stone-900">Tap a glowing pin</span> to teleport to the connected scene — there are nine locations across the Valley.
+                      <span className="font-medium text-stone-900">Tap a glowing pin</span> to teleport to the connected scene · there are nine locations across the Valley.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -431,7 +431,7 @@ export function VirtualTourSection() {
                   {String(idx + 1).padStart(2, '0')}
                 </div>
                 <div className="text-[11px] font-medium text-amber-50 line-clamp-1 leading-tight">
-                  {s.name.split('—')[0].trim()}
+                  {s.name.split('·')[0].trim()}
                 </div>
               </div>
             </button>

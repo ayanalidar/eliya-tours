@@ -1,5 +1,5 @@
 // ============================================================
-// Hotels API — list, get, create, update, delete
+// Hotels API · list, get, create, update, delete
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

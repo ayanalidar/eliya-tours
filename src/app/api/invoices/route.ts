@@ -1,5 +1,5 @@
 // ============================================================
-// Invoices API — list/get/create/update (admin only)
+// Invoices API · list/get/create/update (admin only)
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

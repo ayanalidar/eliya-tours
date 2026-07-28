@@ -80,15 +80,15 @@ export function GenreTimelineSection() {
             <div className="flex items-center gap-3 mb-5">
               <span className="h-px w-10 bg-amber-300/80" />
               <span className="text-[11px] uppercase tracking-[0.32em] text-amber-200/80 font-medium">
-                The Kashmir year — a six-act journey
+                The Kashmir year · a six-act journey
               </span>
             </div>
             <h2 className="text-balance text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.1]">
               From the first tulip to the last powder.
             </h2>
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-stone-300">
-              Scroll sideways through the Kashmir calendar. Each season reveals a different valley —
-              spring blossoms, summer alpine lakes, autumn chinar gold, winter powder — plus our
+              Scroll sideways through the Kashmir calendar. Each season reveals a different valley ·
+              spring blossoms, summer alpine lakes, autumn chinar gold, winter powder · plus our
               year-round houseboat heritage stays.
             </p>
           </div>
@@ -129,7 +129,7 @@ export function GenreTimelineSection() {
         className="relative mt-12 flex gap-5 sm:gap-7 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 sm:px-6 lg:px-8 pb-6"
         style={{ scrollPaddingLeft: '1rem', scrollPaddingRight: '1rem' }}
       >
-        {/* Year-axis line — runs behind the cards */}
+        {/* Year-axis line · runs behind the cards */}
         <div className="pointer-events-none absolute top-[170px] left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-50/15 to-transparent" />
 
         {genreTimeline.map((era, idx) => {
@@ -176,7 +176,7 @@ export function GenreTimelineSection() {
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img
                     src={era.image}
-                    alt={`${era.season} — ${era.title}`}
+                    alt={`${era.season} · ${era.title}`}
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />

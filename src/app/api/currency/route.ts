@@ -1,5 +1,5 @@
 // ============================================================
-// Currency API — fetches live rates from open.er-api.com (free, no key)
+// Currency API · fetches live rates from open.er-api.com (free, no key)
 // Caches in DB for 24 hours. Falls back to fixed rates if API fails.
 // GET /api/currency?base=INR
 // ============================================================

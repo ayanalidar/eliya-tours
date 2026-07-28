@@ -1,8 +1,8 @@
 // ============================================================
-// Notifications API — admin or guest user notifications
-// GET /api/notifications?userType=admin — list (uses cookie session)
-// PATCH /api/notifications?id=... — mark read
-// POST /api/notifications/mark-all — mark all read
+// Notifications API · admin or guest user notifications
+// GET /api/notifications?userType=admin · list (uses cookie session)
+// PATCH /api/notifications?id=... · mark read
+// POST /api/notifications/mark-all · mark all read
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

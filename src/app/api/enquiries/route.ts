@@ -1,8 +1,8 @@
 // ============================================================
 // Enquiries API
-// POST /api/enquiries — create (public)
-// GET  /api/enquiries — list (admin only)
-// PATCH /api/enquiries?id=... — update status (admin only)
+// POST /api/enquiries · create (public)
+// GET  /api/enquiries · list (admin only)
+// PATCH /api/enquiries?id=... · update status (admin only)
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
@@ -33,7 +33,7 @@ async function isAdmin(req: NextRequest) {
   return !!user && user.active
 }
 
-// POST — public submission
+// POST · public submission
 export async function POST(req: NextRequest) {
   // Rate limit: 5 enquiries per IP per hour (spam protection)
   const ip = getClientIP(req)
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ ok: true, id: enquiry.id })
 }
 
-// GET — admin list
+// GET · admin list
 export async function GET(req: NextRequest) {
   if (!(await isAdmin(req))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -109,7 +109,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ enquiries })
 }
 
-// PATCH — admin update status
+// PATCH · admin update status
 export async function PATCH(req: NextRequest) {
   if (!(await isAdmin(req))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

@@ -30,7 +30,7 @@ export function OffersPage() {
 
   const copyCode = (code: string) => {
     navigator.clipboard?.writeText(code)
-    pushToast({ type: 'success', title: 'Code copied', message: `${code} — paste it at checkout` })
+    pushToast({ type: 'success', title: 'Code copied', message: `${code} · paste it at checkout` })
   }
 
   return (
@@ -114,7 +114,7 @@ export function OffersPage() {
           <ol className="space-y-2 text-xs text-amber-100/85">
             <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-amber-300 mt-0.5 shrink-0" /> Pick a code above and copy it.</li>
             <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-amber-300 mt-0.5 shrink-0" /> Go to the booking page and choose your package.</li>
-            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-amber-300 mt-0.5 shrink-0" /> Paste the code in the &quot;Promo code&quot; field — the discount applies instantly.</li>
+            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-amber-300 mt-0.5 shrink-0" /> Paste the code in the &quot;Promo code&quot; field · the discount applies instantly.</li>
             <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-amber-300 mt-0.5 shrink-0" /> Codes can&apos;t be stacked. One code per booking.</li>
           </ol>
         </div>

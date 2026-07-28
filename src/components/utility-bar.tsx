@@ -5,7 +5,7 @@ import { Bell, Check, Globe, DollarSign, X, ChevronDown } from 'lucide-react'
 import { useApp } from '@/lib/app-context'
 
 // ============================================================
-// Utility bar — currency switcher, language switcher, notifications bell
+// Utility bar · currency switcher, language switcher, notifications bell
 // Renders in the header on desktop, in a drawer on mobile
 // ============================================================
 
@@ -165,7 +165,7 @@ export function UtilityBar({ variant = 'light' }: { variant?: 'light' | 'dark' }
 }
 
 // ============================================================
-// Toast container — renders all toasts (success/error/info)
+// Toast container · renders all toasts (success/error/info)
 // ============================================================
 export function ToastContainer() {
   const { toasts, dismissToast } = useApp()

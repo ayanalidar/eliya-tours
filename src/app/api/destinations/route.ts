@@ -1,8 +1,8 @@
 // ============================================================
 // Destinations API
-// GET /api/destinations — list all
-// GET /api/destinations?id=xxx — get one
-// POST/PATCH/DELETE — admin only
+// GET /api/destinations · list all
+// GET /api/destinations?id=xxx · get one
+// POST/PATCH/DELETE · admin only
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

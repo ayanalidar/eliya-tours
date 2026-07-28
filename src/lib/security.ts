@@ -1,5 +1,5 @@
 // ============================================================
-// Security utilities — rate limiting, input sanitization, CORS
+// Security utilities · rate limiting, input sanitization, CORS
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 

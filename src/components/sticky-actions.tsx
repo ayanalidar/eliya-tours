@@ -8,9 +8,9 @@ import { Phone, MessageCircle, X } from 'lucide-react'
 // Fixed bottom-right, with expandable tooltip on mobile
 // ============================================================
 
-const WHATSAPP_NUMBER = '919419012345' // +91 94190 12345
-const PHONE_NUMBER = '+919419012345'
-const DISPLAY_PHONE = '+91 94190 12345'
+const WHATSAPP_NUMBER = '917006734747'
+const PHONE_NUMBER = '+917006734747'
+const DISPLAY_PHONE = '+91-7006734747'
 
 const PRESET_MESSAGES = [
   'Hi Eliya, I\'d like a quote for a Kashmir trip.',

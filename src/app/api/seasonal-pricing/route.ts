@@ -1,8 +1,8 @@
 // ============================================================
-// Seasonal pricing API — admin manages per-hotel per-month multipliers
-// GET /api/seasonal-pricing?hotelId=... — list overrides for hotel
-// POST — create or update
-// DELETE — remove
+// Seasonal pricing API · admin manages per-hotel per-month multipliers
+// GET /api/seasonal-pricing?hotelId=... · list overrides for hotel
+// POST · create or update
+// DELETE · remove
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

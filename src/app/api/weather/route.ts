@@ -1,5 +1,5 @@
 // ============================================================
-// Weather API — proxies Open-Meteo (free, no API key)
+// Weather API · proxies Open-Meteo (free, no API key)
 // GET /api/weather?lat=...&lon=...&dest=...
 // Returns current weather + 3-day forecast
 // ============================================================

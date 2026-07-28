@@ -1,5 +1,5 @@
 // ============================================================
-// Packages API — list/get/create/update/delete (admin only for writes)
+// Packages API · list/get/create/update/delete (admin only for writes)
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

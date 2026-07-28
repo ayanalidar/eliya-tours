@@ -1,9 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Menu, X, Mountain } from 'lucide-react'
+import { Menu, X, LogIn } from 'lucide-react'
 import { useNav } from '@/lib/router'
-import { UtilityBar } from '@/components/utility-bar'
 
 const navItems = [
   { label: 'Home', route: { name: 'home' as const } },
@@ -50,24 +49,9 @@ export function SiteHeader() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <button
           onClick={() => nav({ name: 'home' })}
-          className="flex items-center gap-2.5 group"
+          className="flex items-center gap-2 group"
         >
-          <span
-            className={`grid place-items-center w-9 h-9 rounded-full transition-colors shrink-0 ${
-              useLightHeader
-                ? 'bg-amber-50/15 backdrop-blur text-amber-50 ring-1 ring-amber-50/30'
-                : 'bg-stone-900 text-amber-50'
-            }`}
-          >
-            <Mountain className="w-5 h-5" strokeWidth={2.2} />
-          </span>
-          <span
-            className={`text-sm font-semibold tracking-tight transition-colors whitespace-nowrap ${
-              useLightHeader ? 'text-amber-50' : 'text-stone-900'
-            }`}
-          >
-            Eliya Tours
-          </span>
+          <img src="/logo.png" alt="Eliya Tours" className="h-8 sm:h-9 w-auto object-contain" />
         </button>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -86,8 +70,17 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
-          <UtilityBar variant={useLightHeader ? 'dark' : 'light'} />
+        <div className="hidden md:flex items-center gap-2">
+          <button
+            onClick={() => nav({ name: 'admin' })}
+            className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full ring-1 transition-all ${
+              useLightHeader
+                ? 'text-amber-50/85 hover:text-amber-50 ring-amber-50/30 hover:bg-amber-50/10'
+                : 'text-stone-600 hover:text-stone-900 ring-stone-300 hover:bg-stone-100'
+            }`}
+          >
+            <LogIn className="w-3.5 h-3.5" /> Login
+          </button>
           <button
             onClick={() => nav({ name: 'contact' })}
             className={`text-sm font-medium px-4 py-2 rounded-full transition-all ${
@@ -133,7 +126,7 @@ export function SiteHeader() {
               onClick={() => { nav({ name: 'contact' }); setOpen(false) }}
               className="mt-2 px-3 py-2.5 text-sm font-medium bg-stone-900 text-amber-50 rounded-lg"
             >
-              Plan my trip · +91 94190 12345
+              Plan my trip · +91-7006734747
             </button>
           </nav>
         </div>

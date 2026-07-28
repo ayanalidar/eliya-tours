@@ -1,8 +1,8 @@
 // ============================================================
 // Offers API
-// GET /api/offers — list active offers (public)
-// POST/PATCH/DELETE — admin only
-// POST /api/offers?validate=code — validate a code (public)
+// GET /api/offers · list active offers (public)
+// POST/PATCH/DELETE · admin only
+// POST /api/offers?validate=code · validate a code (public)
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'

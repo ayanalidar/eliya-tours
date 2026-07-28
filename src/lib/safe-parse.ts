@@ -1,5 +1,5 @@
 // ============================================================
-// Safe JSON parse — handles double-encoded strings, nulls,
+// Safe JSON parse · handles double-encoded strings, nulls,
 // non-arrays, and malformed JSON without throwing
 // ============================================================
 

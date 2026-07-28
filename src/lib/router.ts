@@ -1,5 +1,5 @@
 // ============================================================
-// Hash-based router — keeps the app on a single "/" route
+// Hash-based router · keeps the app on a single "/" route
 // (per fullstack-dev skill constraint) while giving the feel
 // of separate pages.
 //
@@ -95,7 +95,7 @@ export function routeToHash(route: Route): string {
 }
 
 export function useRouter() {
-  // Start with 'home' route for SSR — will be updated on client mount
+  // Start with 'home' route for SSR · will be updated on client mount
   const [route, setRoute] = useState<Route>({ name: 'home' })
 
   useEffect(() => {

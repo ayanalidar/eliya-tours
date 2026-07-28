@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Eliya Tours And Travels — Discover Kashmir",
+  title: "Eliya Tours And Travels · Discover Kashmir",
   description:
-    "Eliya Tours And Travels crafts bespoke Kashmir & Ladakh journeys — from Dal Lake houseboats to Gulmarg ski expeditions, alpine meadows, Mughal gardens, Leh, Kargil and Pangong. Curated by locals since 2009.",
+    "Eliya Tours And Travels crafts bespoke Kashmir & Ladakh journeys · from Dal Lake houseboats to Gulmarg ski expeditions, alpine meadows, Mughal gardens, Leh, Kargil and Pangong. Curated by locals since 2009.",
   keywords: [
     "Kashmir tours",
     "Srinagar houseboats",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "Eliya Tours",
   },
   openGraph: {
-    title: "Eliya Tours And Travels — Discover Kashmir",
+    title: "Eliya Tours And Travels · Discover Kashmir",
     description:
       "Bespoke Kashmir & Ladakh journeys curated by locals. Houseboats, alpine meadows, Mughal gardens, ski expeditions and more.",
     siteName: "Eliya Tours And Travels",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Eliya Tours And Travels — Discover Kashmir",
+    title: "Eliya Tours And Travels · Discover Kashmir",
     description: "Bespoke Kashmir & Ladakh journeys curated by locals.",
   },
 };

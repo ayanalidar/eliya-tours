@@ -6,7 +6,7 @@ import { useNav } from '@/lib/router'
 import { useApp } from '@/lib/app-context'
 
 // ============================================================
-// Guest portal — PIN login + register, then view own bookings
+// Guest portal · PIN login + register, then view own bookings
 // ============================================================
 
 type Guest = { id: string; name: string; email: string; phone: string | null }
@@ -236,7 +236,7 @@ export function GuestPortalPage() {
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-2 pt-3 border-t border-stone-100">
                   <a
-                    href={`https://wa.me/919419012345?text=${encodeURIComponent(`Hi Eliya, regarding my booking ${b.reference} (${b.packageName}).`)}`}
+                    href={`https://wa.me/917006734747?text=${encodeURIComponent(`Hi Eliya, regarding my booking ${b.reference} (${b.packageName}).`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs inline-flex items-center gap-1.5 text-green-700 hover:text-green-900 bg-green-50 hover:bg-green-100 ring-1 ring-green-200 px-3 py-1.5 rounded-full"
