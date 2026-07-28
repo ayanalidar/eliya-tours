@@ -78,33 +78,43 @@ export function SpotlightHero() {
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-10" />
 
       {/* ===== Content ===== */}
-      <div className="relative z-20 h-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-24 pb-16 sm:pb-20">
+      <div className="relative z-20 h-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-20 pb-14 sm:pb-16">
         <div className="max-w-3xl">
           {/* Title */}
-          <h1 className="text-balance text-3xl sm:text-5xl lg:text-7xl font-bold leading-tight tracking-tight text-amber-50 opacity-0 animate-[fadeInUp_1.1s_0.35s_forwards]">
+          <h1 className="text-balance text-3xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-amber-50 opacity-0 animate-[fadeInUp_1.1s_0.35s_forwards]">
             Discover Kashmir
           </h1>
 
           {/* Paradise on Earth */}
-          <p className="mt-1 sm:mt-2 text-lg sm:text-2xl lg:text-3xl font-light italic text-amber-50/90 opacity-0 animate-[fadeInUp_1.1s_0.45s_forwards]">
+          <p className="mt-1 text-lg sm:text-2xl lg:text-3xl font-light italic text-amber-50/90 opacity-0 animate-[fadeInUp_1.1s_0.45s_forwards]">
             Paradise on Earth
           </p>
 
           {/* Crown of India */}
-          <p className="mt-2 sm:mt-3 text-sm sm:text-lg lg:text-xl font-semibold tracking-[0.15em] uppercase eliya-gradient-text opacity-0 animate-[fadeInUp_1.1s_0.55s_forwards]">
+          <p className="mt-2 text-sm sm:text-lg lg:text-xl font-semibold tracking-[0.15em] uppercase eliya-gradient-text opacity-0 animate-[fadeInUp_1.1s_0.55s_forwards]">
             The Crown of India
           </p>
 
           {/* Tagline */}
-          <p className="mt-3 sm:mt-5 text-sm sm:text-base lg:text-lg font-light italic text-amber-50/70 opacity-0 animate-[fadeInUp_1.1s_0.7s_forwards]">
+          <p className="mt-2 text-sm sm:text-base lg:text-lg font-light italic text-amber-50/70 opacity-0 animate-[fadeInUp_1.1s_0.7s_forwards]">
             With The People Who Call It Home
           </p>
 
           {/* Subtitle */}
-          <p className="mt-5 sm:mt-7 max-w-lg text-xs sm:text-sm lg:text-base leading-relaxed text-stone-200/70 opacity-0 animate-[fadeInUp_1.1s_0.85s_forwards]">
+          <p className="mt-4 sm:mt-6 max-w-lg text-xs sm:text-sm lg:text-base leading-relaxed text-stone-200/70 opacity-0 animate-[fadeInUp_1.1s_0.85s_forwards]">
             Bespoke journeys through the Valley. Houseboats on Nigeen Lake, powder runs in Gulmarg,
             glacier treks out of Sonmarg, and the hidden meadows of Yusmarg. Curated by Eliya since 2009.
           </p>
+
+          {/* Feature highlights */}
+          <div className="mt-4 sm:mt-5 flex flex-wrap gap-x-5 gap-y-1.5 text-[11px] sm:text-xs text-amber-100/60 opacity-0 animate-[fadeInUp_1.1s_0.95s_forwards]">
+            <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-amber-300" /> 22 Destinations</span>
+            <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-amber-300" /> 18 Adventure Sports</span>
+            <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-amber-300" /> AI Guide Tariq</span>
+            <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-amber-300" /> 360 Degree Virtual Tour</span>
+            <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-amber-300" /> Real-time Weather</span>
+            <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-amber-300" /> Flight & Train Tickets</span>
+          </div>
 
           {/* CTAs */}
           <div className="mt-9 flex flex-wrap items-center gap-3 opacity-0 animate-[fadeInUp_1.1s_0.9s_forwards]">
