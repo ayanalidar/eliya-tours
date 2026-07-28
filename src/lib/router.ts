@@ -28,6 +28,8 @@ export type Route =
   | { name: 'season'; id: string }
   | { name: 'hotels' }
   | { name: 'hotel'; id: string }
+  | { name: 'flights' }
+  | { name: 'railway' }
   | { name: 'ai-guide' }
   | { name: 'admin' }
   | { name: 'contact' }
@@ -58,6 +60,8 @@ export function parseHash(hash: string): Route {
     if (parts[1]) return { name: 'hotel', id: decodeURIComponent(parts[1]) }
     return { name: 'hotels' }
   }
+  if (parts[0] === 'flights') return { name: 'flights' }
+  if (parts[0] === 'railway') return { name: 'railway' }
   if (parts[0] === 'ai-guide') return { name: 'ai-guide' }
   if (parts[0] === 'admin') return { name: 'admin' }
   if (parts[0] === 'contact') return { name: 'contact' }
@@ -79,6 +83,8 @@ export function routeToHash(route: Route): string {
     case 'season': return `#/seasons/${encodeURIComponent(route.id)}`
     case 'hotels': return '#/hotels'
     case 'hotel': return `#/hotels/${encodeURIComponent(route.id)}`
+    case 'flights': return '#/flights'
+    case 'railway': return '#/railway'
     case 'ai-guide': return '#/ai-guide'
     case 'admin': return '#/admin'
     case 'contact': return '#/contact'

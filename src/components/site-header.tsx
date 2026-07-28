@@ -11,6 +11,8 @@ const navItems = [
   { label: 'Adventures', route: { name: 'adventures' as const } },
   { label: 'Seasons', route: { name: 'seasons' as const } },
   { label: 'Hotels', route: { name: 'hotels' as const } },
+  { label: 'Flights', route: { name: 'flights' as const } },
+  { label: 'Trains', route: { name: 'railway' as const } },
   { label: 'AI Guide', route: { name: 'ai-guide' as const } },
   { label: 'Contact', route: { name: 'contact' as const } },
 ]

@@ -78,25 +78,25 @@ export function SpotlightHero() {
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-10" />
 
       {/* ===== Content ===== */}
-      <div className="relative z-20 h-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-32 pb-20 sm:pb-28">
+      <div className="relative z-20 h-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-28 pb-16 sm:pb-20">
         <div className="max-w-3xl">
           {/* Title */}
-          <h1 className="text-balance text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight text-amber-50 opacity-0 animate-[fadeInUp_1.1s_0.35s_forwards]">
+          <h1 className="text-balance text-3xl sm:text-5xl lg:text-7xl font-bold leading-tight tracking-tight text-amber-50 opacity-0 animate-[fadeInUp_1.1s_0.35s_forwards]">
             Discover Kashmir
           </h1>
 
-          {/* Crown subtitle */}
-          <p className="mt-6 sm:mt-8 text-base sm:text-xl lg:text-2xl font-medium tracking-[0.25em] uppercase text-amber-200/90 opacity-0 animate-[fadeInUp_1.1s_0.5s_forwards]">
+          {/* Crown subtitle — animated gradient */}
+          <p className="mt-3 sm:mt-5 text-sm sm:text-lg lg:text-xl font-semibold tracking-[0.2em] uppercase eliya-gradient-text opacity-0 animate-[fadeInUp_1.1s_0.5s_forwards]">
             The Crown Of India
           </p>
 
           {/* Tagline */}
-          <p className="mt-4 sm:mt-5 text-lg sm:text-2xl lg:text-3xl font-light italic text-amber-50/90 eliya-shimmer opacity-0 animate-[fadeInUp_1.1s_0.65s_forwards]">
+          <p className="mt-4 sm:mt-6 text-base sm:text-xl lg:text-2xl font-light italic text-amber-50/80 opacity-0 animate-[fadeInUp_1.1s_0.65s_forwards]">
             with the people who call it home.
           </p>
 
           {/* Subtitle */}
-          <p className="mt-8 sm:mt-10 max-w-xl text-sm sm:text-base lg:text-lg leading-relaxed text-stone-200/85 opacity-0 animate-[fadeInUp_1.1s_0.8s_forwards]">
+          <p className="mt-6 sm:mt-8 max-w-lg text-xs sm:text-base lg:text-lg leading-relaxed text-stone-200/75 opacity-0 animate-[fadeInUp_1.1s_0.8s_forwards]">
             Bespoke journeys through the Valley — houseboats on Nigeen Lake, powder runs in Gulmarg,
             glacier treks out of Sonmarg, and the hidden meadows of Yusmarg. Curated by Eliya since 2009.
           </p>

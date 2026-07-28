@@ -26,6 +26,8 @@ import { AdventurePage } from '@/components/pages/adventure-page'
 import { BookingPage } from '@/components/pages/booking-page'
 import { GuestPortalPage } from '@/components/pages/guest-portal-page'
 import { OffersPage } from '@/components/pages/offers-page'
+import { FlightsPage } from '@/components/pages/flights-page'
+import { RailwayPage } from '@/components/pages/railway-page'
 
 function LoadingShell() {
   return (
@@ -157,6 +159,26 @@ function AppRoutes() {
       <>
         <SiteHeader />
         <HotelsPage />
+        <SiteFooter />
+        <StickyActions />
+      </>
+    )
+  }
+  if (route.name === 'flights') {
+    return (
+      <>
+        <SiteHeader />
+        <FlightsPage />
+        <SiteFooter />
+        <StickyActions />
+      </>
+    )
+  }
+  if (route.name === 'railway') {
+    return (
+      <>
+        <SiteHeader />
+        <RailwayPage />
         <SiteFooter />
         <StickyActions />
       </>
