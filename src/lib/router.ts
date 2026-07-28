@@ -90,16 +90,18 @@ export function routeToHash(route: Route): string {
 }
 
 export function useRouter() {
-  const [route, setRoute] = useState<Route>(() => parseHash(typeof window !== 'undefined' ? window.location.hash : ''))
+  // Start with 'home' route for SSR — will be updated on client mount
+  const [route, setRoute] = useState<Route>({ name: 'home' })
 
   useEffect(() => {
-    const onHashChange = () => {
+    // Parse hash on mount (client-only, safe here)
+    const update = () => {
       setRoute(parseHash(window.location.hash))
-      // Scroll to top on route change (unless it's a hash anchor on the home page)
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
     }
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
+    update()
+    window.addEventListener('hashchange', update)
+    return () => window.removeEventListener('hashchange', update)
   }, [])
 
   const navigate = useCallback((r: Route) => {

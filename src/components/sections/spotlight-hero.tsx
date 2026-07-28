@@ -81,20 +81,22 @@ export function SpotlightHero() {
       <div className="relative z-20 h-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-20 sm:pb-28">
         <div className="max-w-3xl">
           {/* Title */}
-          <h1 className="text-balance text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight text-amber-50">
-            <span className="block opacity-0 animate-[fadeInUp_1.1s_0.35s_forwards]">
-              Discover Kashmir
-            </span>
-            <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium tracking-[0.15em] uppercase text-amber-200/90 mt-2 opacity-0 animate-[fadeInUp_1.1s_0.45s_forwards]">
-              The Crown Of India
-            </span>
-            <span className="block opacity-0 animate-[fadeInUp_1.1s_0.6s_forwards] eliya-shimmer font-light italic">
-              with the people who call it home.
-            </span>
+          <h1 className="text-balance text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.05] tracking-tight text-amber-50 opacity-0 animate-[fadeInUp_1.1s_0.35s_forwards]">
+            Discover Kashmir
           </h1>
 
+          {/* Crown subtitle */}
+          <p className="mt-4 sm:mt-5 text-lg sm:text-2xl lg:text-3xl font-medium tracking-[0.2em] uppercase text-amber-200/90 opacity-0 animate-[fadeInUp_1.1s_0.5s_forwards]">
+            The Crown Of India
+          </p>
+
+          {/* Tagline */}
+          <p className="mt-3 sm:mt-4 text-xl sm:text-3xl lg:text-4xl font-light italic text-amber-50/90 eliya-shimmer opacity-0 animate-[fadeInUp_1.1s_0.65s_forwards]">
+            with the people who call it home.
+          </p>
+
           {/* Subtitle */}
-          <p className="mt-7 max-w-xl text-base sm:text-lg leading-relaxed text-stone-200/85 opacity-0 animate-[fadeInUp_1.1s_0.7s_forwards]">
+          <p className="mt-7 max-w-xl text-base sm:text-lg leading-relaxed text-stone-200/85 opacity-0 animate-[fadeInUp_1.1s_0.8s_forwards]">
             Bespoke journeys through the Valley — houseboats on Nigeen Lake, powder runs in Gulmarg,
             glacier treks out of Sonmarg, and the hidden meadows of Yusmarg. Curated by Eliya since 2009.
           </p>
