@@ -85,7 +85,10 @@ export function SpotlightHero() {
             <span className="block opacity-0 animate-[fadeInUp_1.1s_0.35s_forwards]">
               Discover Kashmir
             </span>
-            <span className="block opacity-0 animate-[fadeInUp_1.1s_0.5s_forwards] eliya-shimmer font-light italic">
+            <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium tracking-[0.15em] uppercase text-amber-200/90 mt-2 opacity-0 animate-[fadeInUp_1.1s_0.45s_forwards]">
+              The Crown Of India
+            </span>
+            <span className="block opacity-0 animate-[fadeInUp_1.1s_0.6s_forwards] eliya-shimmer font-light italic">
               with the people who call it home.
             </span>
           </h1>
