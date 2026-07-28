@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { useNav } from '@/lib/router'
 import { UniversalEditor } from '@/components/admin/universal-editor'
+import { HeroEditor } from '@/components/admin/hero-editor'
 import { safeJsonParse } from '@/lib/safe-parse'
 
 // ============================================================
@@ -22,7 +23,7 @@ export function AdminPage() {
   const [checking, setChecking] = useState(true)
   const [tab, setTab] = useState<
     'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' |
-    'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor'
+    'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor' | 'hero'
   >('dashboard')
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export function AdminPage() {
     { id: 'invoices' as const, label: 'Invoices', Icon: FileText },
     { id: 'itineraries' as const, label: 'Itineraries', Icon: Route },
     { id: 'data-editor' as const, label: 'Data Editor', Icon: Database },
+    { id: 'hero' as const, label: 'Hero Section', Icon: ImageIcon },
   ]
 
   return (
@@ -117,6 +119,7 @@ export function AdminPage() {
         {tab === 'invoices' && <InvoicesManager user={user} />}
         {tab === 'itineraries' && <ItinerariesManager user={user} />}
         {tab === 'data-editor' && <UniversalEditor />}
+        {tab === 'hero' && <HeroEditor />}
       </main>
     </div>
   )
@@ -225,41 +228,30 @@ function LoginScreen({ onSuccess, onBack }: { onSuccess: (u: AdminUser) => void;
 // ============================================================
 // Dashboard
 // ============================================================
-type TabId = 'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' | 'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor'
+type TabId = 'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' | 'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor' | 'hero'
 function Dashboard({ user, setTab }: { user: AdminUser; setTab: (t: TabId) => void }) {
   const [stats, setStats] = useState({ enquiries: 0, destinations: 0, seasons: 0, hotels: 0, invoices: 0, newEnquiries: 0, bookings: 0, adventures: 0, offers: 0, pendingReviews: 0 })
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    Promise.all([
-      fetch('/api/enquiries').then((r) => r.json()).catch(() => ({ enquiries: [] })),
-      fetch('/api/destinations').then((r) => r.json()).catch(() => ({ destinations: [] })),
-      fetch('/api/seasons').then((r) => r.json()).catch(() => ({ seasons: [] })),
-      fetch('/api/hotels').then((r) => r.json()).catch(() => ({ hotels: [] })),
-      fetch('/api/invoices').then((r) => r.json()).catch(() => ({ invoices: [] })),
-      fetch('/api/bookings').then((r) => r.json()).catch(() => ({ bookings: [] })),
-      fetch('/api/adventures').then((r) => r.json()).catch(() => ({ adventures: [] })),
-      fetch('/api/offers').then((r) => r.json()).catch(() => ({ offers: [] })),
-      fetch('/api/reviews').then((r) => r.json()).catch(() => ({ reviews: [] })),
-    ])
-      .then(([e, d, s, h, i, b, a, o, rv]) => {
-        setStats({
-          enquiries: e.enquiries?.length || 0,
-          newEnquiries: e.enquiries?.filter((x: { status: string }) => x.status === 'new').length || 0,
-          destinations: d.destinations?.length || 0,
-          seasons: s.seasons?.length || 0,
-          hotels: h.hotels?.length || 0,
-          invoices: i.invoices?.length || 0,
-          bookings: b.bookings?.length || 0,
-          adventures: a.adventures?.length || 0,
-          offers: o.offers?.length || 0,
-          pendingReviews: rv.reviews?.filter((x: { approved: boolean }) => !x.approved).length || 0,
-        })
-      })
+    fetch('/api/dashboard-stats')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setStats(d) })
+      .catch(() => {})
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <div className="text-stone-500">Loading dashboard…</div>
+  if (loading) return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      {Array.from({ length: 9 }).map((_, i) => (
+        <div key={i} className="bg-white ring-1 ring-stone-200 rounded-2xl p-5 animate-pulse">
+          <div className="w-5 h-5 bg-stone-200 rounded mb-2"></div>
+          <div className="h-8 w-12 bg-stone-200 rounded"></div>
+          <div className="h-3 w-20 bg-stone-100 rounded mt-2"></div>
+        </div>
+      ))}
+    </div>
+  )
 
   const cards = [
     { label: 'New enquiries', value: stats.newEnquiries, total: stats.enquiries, color: 'bg-amber-100 text-amber-900', Icon: Inbox, tab: 'enquiries' as const },
