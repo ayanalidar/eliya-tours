@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ArrowLeft, Send, Loader2, Check, Users, Child, MapPin, Hotel, Utensils, Mountain, Car, Compass, Camera, Plane, Train, ChevronDown, X } from 'lucide-react'
+import { ArrowLeft, Send, Loader2, Check, Users, Baby, MapPin, Hotel, Utensils, Mountain, Car, Compass, Camera, Plane, Train } from 'lucide-react'
 import { useNav } from '@/lib/router'
 import { useApp } from '@/lib/app-context'
 
@@ -222,7 +222,7 @@ export function PlanTripPage() {
               <input type="number" min="1" max="50" value={form.guests} onChange={e => setForm({...form, guests: Number(e.target.value)})} className="w-full bg-stone-50 ring-1 ring-stone-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-stone-400" />
             </div>
             <div>
-              <label className="text-[11px] uppercase tracking-[0.15em] text-stone-500 font-medium block mb-1 flex items-center gap-1"><Child className="w-3 h-3" /> Number of Children</label>
+              <label className="text-[11px] uppercase tracking-[0.15em] text-stone-500 font-medium block mb-1 flex items-center gap-1"><Baby className="w-3 h-3" /> Number of Children</label>
               <input type="number" min="0" max="20" value={form.children} onChange={e => setForm({...form, children: Number(e.target.value)})} className="w-full bg-stone-50 ring-1 ring-stone-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-stone-400" />
             </div>
           </div>
