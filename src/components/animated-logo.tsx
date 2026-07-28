@@ -1,29 +1,30 @@
 'use client'
 
 // ============================================================
-// Animated Eliya Tours logo — SVG with glowing mountains,
-// shikara boat on water, and animated fairy lights
+// Chinar leaf logo — animated color-changing SVG
+// The Chinar (Platanus orientalis) is the iconic tree of Kashmir
 // ============================================================
 
 export function AnimatedLogo({ className = 'h-10', light = false }: { className?: string; light?: boolean }) {
   const textColor = light ? '#fef3c7' : '#1c1917'
+  const subColor = light ? '#fbbf24' : '#78716c'
 
   return (
-    <svg viewBox="0 0 240 60" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 260 60" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        {/* Mountain gradient */}
-        <linearGradient id="eliya-mtn" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#fbbf24" />
-          <stop offset="100%" stopColor="#f59e0b" />
+        <linearGradient id="chinar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#fbbf24">
+            <animate attributeName="stop-color" values="#fbbf24;#f97316;#dc2626;#84cc16;#fbbf24" dur="8s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="50%" stopColor="#f97316">
+            <animate attributeName="stop-color" values="#f97316;#dc2626;#84cc16;#fbbf24;#f97316" dur="8s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stopColor="#dc2626">
+            <animate attributeName="stop-color" values="#dc2626;#84cc16;#fbbf24;#f97316;#dc2626" dur="8s" repeatCount="indefinite" />
+          </stop>
         </linearGradient>
-        {/* Water gradient */}
-        <linearGradient id="eliya-water" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0ea5e9" />
-          <stop offset="100%" stopColor="#0284c7" />
-        </linearGradient>
-        {/* Glow filter */}
-        <filter id="eliya-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="1.5" result="blur" />
+        <filter id="chinar-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
@@ -31,50 +32,51 @@ export function AnimatedLogo({ className = 'h-10', light = false }: { className?
         </filter>
       </defs>
 
-      {/* Sun / moon circle */}
-      <circle cx="22" cy="18" r="6" fill="#fde68a" opacity="0.9" filter="url(#eliya-glow)">
-        <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" />
-      </circle>
+      {/* Chinar leaf — stylized 5-lobed leaf */}
+      <g filter="url(#chinar-glow)" transform="translate(30, 30)">
+        {/* Stem */}
+        <line x1="0" y1="22" x2="0" y2="8" stroke="url(#chinar-grad)" strokeWidth="1.5" strokeLinecap="round" />
 
-      {/* Mountains */}
-      <path d="M 8 42 L 18 20 L 24 28 L 30 16 L 38 30 L 44 22 L 52 42 Z" fill="url(#eliya-mtn)" filter="url(#eliya-glow)" />
-      {/* Snow cap */}
-      <path d="M 18 20 L 20 24 L 16 24 Z M 30 16 L 32 20 L 28 20 Z" fill="#fff" opacity="0.9" />
+        {/* Leaf body — 5 pointed lobes radiating from center */}
+        <path
+          d="M 0 8
+             C -4 4, -10 2, -14 4
+             C -10 0, -8 -4, -10 -8
+             C -6 -4, -3 -6, -2 -10
+             C -1 -6, 0 -12, 0 -16
+             C 0 -12, 1 -6, 2 -10
+             C 3 -6, 6 -4, 10 -8
+             C 8 -4, 10 0, 14 4
+             C 10 2, 4 4, 0 8 Z"
+          fill="url(#chinar-grad)"
+          opacity="0.95"
+        >
+          <animate attributeName="opacity" values="0.85;1;0.85" dur="4s" repeatCount="indefinite" />
+        </path>
 
-      {/* Water */}
-      <rect x="8" y="42" width="44" height="6" rx="1" fill="url(#eliya-water)" opacity="0.8" />
-      {/* Water reflection lines */}
-      <line x1="12" y1="45" x2="20" y2="45" stroke="#7dd3fc" strokeWidth="0.5" opacity="0.6">
-        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
-      </line>
-      <line x1="28" y1="46" x2="40" y2="46" stroke="#7dd3fc" strokeWidth="0.5" opacity="0.6">
-        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.5s" repeatCount="indefinite" />
-      </line>
+        {/* Leaf veins */}
+        <line x1="0" y1="8" x2="0" y2="-14" stroke="#fff" strokeWidth="0.4" opacity="0.5" />
+        <line x1="0" y1="0" x2="-10" y2="-4" stroke="#fff" strokeWidth="0.3" opacity="0.4" />
+        <line x1="0" y1="0" x2="10" y2="-4" stroke="#fff" strokeWidth="0.3" opacity="0.4" />
+        <line x1="0" y1="4" x2="-8" y2="2" stroke="#fff" strokeWidth="0.3" opacity="0.3" />
+        <line x1="0" y1="4" x2="8" y2="2" stroke="#fff" strokeWidth="0.3" opacity="0.3" />
 
-      {/* Shikara (boat) */}
-      <path d="M 16 44 L 44 44 L 40 47 L 20 47 Z" fill="#92400e" />
-      <rect x="26" y="40" width="8" height="4" rx="0.5" fill="#b45309" />
-      <line x1="30" y1="34" x2="30" y2="40" stroke="#78350f" strokeWidth="0.8" />
-
-      {/* Fairy lights — animated dots */}
-      <circle cx="14" cy="14" r="1.2" fill="#fbbf24" filter="url(#eliya-glow)">
-        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" begin="0s" />
-      </circle>
-      <circle cx="38" cy="12" r="1.2" fill="#fde68a" filter="url(#eliya-glow)">
-        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" begin="0.3s" />
-      </circle>
-      <circle cx="50" cy="18" r="1" fill="#fbbf24" filter="url(#eliya-glow)">
-        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" begin="0.6s" />
-      </circle>
-      <circle cx="6" cy="20" r="1" fill="#fde68a" filter="url(#eliya-glow)">
-        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" begin="0.9s" />
-      </circle>
+        {/* Small falling leaf particle */}
+        <path
+          d="M -16 12 C -14 10, -12 11, -12 13 C -13 14, -15 13, -16 12 Z"
+          fill="url(#chinar-grad)"
+          opacity="0.6"
+        >
+          <animateTransform attributeName="transform" type="rotate" from="0 -14 12" to="360 -14 12" dur="6s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite" />
+        </path>
+      </g>
 
       {/* Text */}
-      <text x="60" y="26" fontFamily="system-ui, -apple-system, sans-serif" fontSize="16" fontWeight="700" fill={textColor} letterSpacing="0.5">
+      <text x="58" y="24" fontFamily="system-ui, -apple-system, sans-serif" fontSize="15" fontWeight="700" fill={textColor} letterSpacing="0.5">
         Eliya Tours
       </text>
-      <text x="60" y="38" fontFamily="system-ui, -apple-system, sans-serif" fontSize="8" fontWeight="500" fill={light ? '#fbbf24' : '#78716c'} letterSpacing="2" textTransform="uppercase">
+      <text x="58" y="36" fontFamily="system-ui, -apple-system, sans-serif" fontSize="7" fontWeight="500" fill={subColor} letterSpacing="1.5">
         AND TRAVELS
       </text>
     </svg>

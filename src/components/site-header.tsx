@@ -83,7 +83,7 @@ export function SiteHeader() {
             <LogIn className="w-3.5 h-3.5" /> Login
           </button>
           <button
-            onClick={() => nav({ name: 'contact' })}
+            onClick={() => nav({ name: 'plan-trip' })}
             className={`text-sm font-medium px-4 py-2 rounded-full transition-all ${
               useLightHeader
                 ? 'bg-amber-50 text-stone-900 hover:bg-white'

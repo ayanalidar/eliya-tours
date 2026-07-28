@@ -32,6 +32,7 @@ export type Route =
   | { name: 'ai-guide' }
   | { name: 'admin' }
   | { name: 'contact' }
+  | { name: 'plan-trip' }
   | { name: 'booking'; packageId?: string }
   | { name: 'guest-portal' }
   | { name: 'offers' }
@@ -65,6 +66,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === 'ai-guide') return { name: 'ai-guide' }
   if (parts[0] === 'admin') return { name: 'admin' }
   if (parts[0] === 'contact') return { name: 'contact' }
+  if (parts[0] === 'plan-trip') return { name: 'plan-trip' }
   if (parts[0] === 'booking') return { name: 'booking', packageId: parts[1] ? decodeURIComponent(parts[1]) : undefined }
   if (parts[0] === 'guest-portal') return { name: 'guest-portal' }
   if (parts[0] === 'offers') return { name: 'offers' }
@@ -87,6 +89,7 @@ export function routeToHash(route: Route): string {
     case 'ai-guide': return '#/ai-guide'
     case 'admin': return '#/admin'
     case 'contact': return '#/contact'
+    case 'plan-trip': return '#/plan-trip'
     case 'booking': return route.packageId ? `#/booking/${encodeURIComponent(route.packageId)}` : '#/booking'
     case 'guest-portal': return '#/guest-portal'
     case 'offers': return '#/offers'

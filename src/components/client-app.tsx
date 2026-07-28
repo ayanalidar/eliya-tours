@@ -29,6 +29,7 @@ const BookingPage = lazy(() => import('@/components/pages/booking-page').then(m 
 const GuestPortalPage = lazy(() => import('@/components/pages/guest-portal-page').then(m => ({ default: m.GuestPortalPage })))
 const OffersPage = lazy(() => import('@/components/pages/offers-page').then(m => ({ default: m.OffersPage })))
 const TicketsPage = lazy(() => import('@/components/pages/tickets-page').then(m => ({ default: m.TicketsPage })))
+const PlanTripPage = lazy(() => import('@/components/pages/plan-trip-page').then(m => ({ default: m.PlanTripPage })))
 
 function LoadingShell() {
   return (
@@ -188,6 +189,16 @@ function AppRoutes() {
       <>
         <SiteHeader />
         <Suspense fallback={<PageLoader />}><ContactPage /></Suspense>
+        <SiteFooter />
+        <StickyActions />
+      </>
+    )
+  }
+  if (route.name === 'plan-trip') {
+    return (
+      <>
+        <SiteHeader />
+        <Suspense fallback={<PageLoader />}><PlanTripPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
