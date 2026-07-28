@@ -5,6 +5,7 @@ import { ArrowLeft, Clock, Users, Mountain, Shield, CalendarDays, Check, ArrowUp
 import { useNav } from '@/lib/router'
 import { useApp } from '@/lib/app-context'
 import { WeatherWidget } from '@/components/weather-widget'
+import { safeJsonParse } from '@/lib/safe-parse'
 
 type Adventure = {
   id: string
@@ -43,8 +44,8 @@ export function AdventurePage({ id }: { id: string }) {
         if (found) {
           setAdv({
             ...found,
-            gear: JSON.parse(found.gear || '[]'),
-            safety: JSON.parse(found.safety || '[]'),
+            gear: safeJsonParse(found.gear, []),
+            safety: safeJsonParse(found.safety, []),
           })
           const d = (dData.destinations || []).find((x: Destination) => x.id === found.destinationId)
           if (d) setDest(d)

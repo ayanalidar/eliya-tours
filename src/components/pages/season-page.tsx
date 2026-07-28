@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowUpRight, Calendar, Clock, MapPin, Star, Check, MessageCircle } from 'lucide-react'
 import { useNav } from '@/lib/router'
+import { safeJsonParse, safeStringArray } from '@/lib/safe-parse'
 
 // ============================================================
 // Season detail page
@@ -47,8 +48,8 @@ export function SeasonPage({ id }: { id: string }) {
     return <div className="min-h-screen grid place-items-center bg-stone-50"><div className="text-center"><p className="text-stone-500">Season not found.</p><button onClick={() => nav({ name: 'seasons' })} className="mt-3 text-stone-950 font-medium underline">Back to seasons</button></div></div>
   }
 
-  const itinerary: Array<{ day: number; title: string; desc: string }> = JSON.parse(season.itinerary || '[]')
-  const destIds: string[] = JSON.parse(season.destinations || '[]')
+  const itinerary: Array<{ day: number; title: string; desc: string }> = safeJsonParse(season.itinerary, [])
+  const destIds: string[] = safeStringArray(season.destinations)
 
   return (
     <div className="bg-stone-50 min-h-screen">

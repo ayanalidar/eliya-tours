@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowLeft, Calendar, Clock, Star, ArrowUpRight, MapPin } from 'lucide-react'
 import { useNav } from '@/lib/router'
+import { safeStringArray } from '@/lib/safe-parse'
 
 type Season = {
   id: string
@@ -51,7 +52,7 @@ export function SeasonsPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {seasons.map((s) => {
-            const destIds: string[] = JSON.parse(s.destinations || '[]')
+            const destIds: string[] = safeStringArray(s.destinations)
             return (
               <article
                 key={s.id}

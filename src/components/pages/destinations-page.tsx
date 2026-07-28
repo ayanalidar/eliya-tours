@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowUpRight, MapPin, Mountain, CalendarDays, Star } from 'lucide-react'
 import { useNav } from '@/lib/router'
 import { destinations as fallbackDestinations, type Destination } from '@/lib/destinations'
+import { safeStringArray } from '@/lib/safe-parse'
 
 const AREA_DESCRIPTIONS: Record<string, string> = {
   'Kashmir Valley': 'Srinagar, Dal, Pampore, Sonmarg & Gurez — the heart of the Valley',
@@ -39,7 +40,7 @@ export function DestinationsPage() {
             latitude: d.latitude as number,
             longitude: d.longitude as number,
             stats: { rating: d.rating as number, visitors: d.visitors as number, curated: d.curated as number, safety: d.safety as number },
-            highlights: JSON.parse((d.highlights as string) || '[]'),
+            highlights: safeStringArray(d.highlights),
           })))
         }
       })

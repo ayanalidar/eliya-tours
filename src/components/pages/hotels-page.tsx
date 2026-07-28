@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowLeft, Star, ArrowUpRight, Check, Hotel as HotelIcon } from 'lucide-react'
 import { useNav } from '@/lib/router'
+import { safeStringArray } from '@/lib/safe-parse'
 
 // ============================================================
 // Hotels listing page
@@ -103,7 +104,7 @@ export function HotelsPage() {
         ) : (
           <div className="grid gap-5 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((h) => {
-              const amenities: string[] = JSON.parse(h.amenities || '[]')
+              const amenities: string[] = safeStringArray(h.amenities)
               return (
                 <article
                   key={h.id}

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowUpRight, Clock, Users, Mountain, Shield, CalendarDays } from 'lucide-react'
 import { useNav } from '@/lib/router'
 import { useApp } from '@/lib/app-context'
+import { safeStringArray } from '@/lib/safe-parse'
 
 type Adventure = {
   id: string
@@ -107,7 +108,7 @@ export function AdventuresPage() {
           <div className="grid gap-5 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((a) => {
               const accent = CATEGORY_ACCENT[a.category] || 'oklch(0.62 0.13 165)'
-              const gear: string[] = JSON.parse(a.gear || '[]')
+              const gear: string[] = safeStringArray(a.gear)
               return (
                 <article
                   key={a.id}

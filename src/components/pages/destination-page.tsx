@@ -8,6 +8,7 @@ import { WeatherAlert } from '@/components/weather-alert'
 import { CircularProgress } from '@/components/sections/destinations-guide-section'
 import { ReviewsSection } from '@/components/reviews-section'
 import type { Destination } from '@/lib/destinations'
+import { safeStringArray } from '@/lib/safe-parse'
 
 // ============================================================
 // Destination detail page
@@ -62,7 +63,7 @@ export function DestinationPage({ id }: { id: string }) {
               curated: d.curated,
               safety: d.safety,
             },
-            highlights: JSON.parse(d.highlights || '[]'),
+            highlights: safeStringArray(d.highlights),
           })
         }
         if (hData.hotels) setHotels(hData.hotels)

@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { useNav } from '@/lib/router'
 import { UniversalEditor } from '@/components/admin/universal-editor'
+import { safeJsonParse } from '@/lib/safe-parse'
 
 // ============================================================
 // Admin panel — PIN-based login + CMS
@@ -1527,7 +1528,7 @@ function ItinerariesManager({ user }: { user: AdminUser }) {
       ) : (
         <div className="space-y-2">
           {items.map((it) => {
-            const days = JSON.parse((it.days as string) || '[]')
+            const days = safeJsonParse(it.days, [])
             return (
               <div key={it.id as string} className="bg-white ring-1 ring-stone-200 rounded-2xl p-4 flex items-center justify-between gap-3">
                 <div>
@@ -1552,7 +1553,7 @@ function ItineraryEditor({ initial, destinations, hotels, onSave, onCancel }: { 
   const [name, setName] = useState(initial.name as string || '')
   const [description, setDescription] = useState(initial.description as string || '')
   const [days, setDays] = useState<Array<{ destinationId: string; activities: string; hotelId: string; meals: string }>>(
-    JSON.parse((initial.days as string) || '[]')
+    safeJsonParse(initial.days, [])
   )
 
   const addDay = () => setDays([...days, { destinationId: destinations[0]?.id || '', activities: '', hotelId: '', meals: 'Breakfast + Dinner' }])

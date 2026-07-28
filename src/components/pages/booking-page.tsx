@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { ArrowLeft, Check, Loader2, Tag, Shield, CreditCard, Wallet, Banknote, Lock, CalendarDays, Users, Sparkles } from 'lucide-react'
 import { useNav } from '@/lib/router'
 import { useApp } from '@/lib/app-context'
+import { safeStringArray } from '@/lib/safe-parse'
 
 // ============================================================
 // Booking page — collects guest details, validates promo codes,
@@ -81,7 +82,7 @@ export function BookingPage({ preselectedPackageId }: { preselectedPackageId?: s
           guestEmail: form.guestEmail,
           guestPhone: form.guestPhone,
           packageName: selectedSeason.title,
-          destinationIds: JSON.parse(selectedSeason.destinations || '[]'),
+          destinationIds: safeStringArray(selectedSeason.destinations),
           startDate: form.startDate,
           endDate: form.endDate,
           party: form.party,

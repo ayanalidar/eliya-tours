@@ -1,4 +1,5 @@
 'use client'
+import { safeStringArray } from '@/lib/safe-parse'
 
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Mountain, CalendarDays, Gauge, MapPin } from 'lucide-react'
@@ -51,7 +52,7 @@ export function DestinationsSection() {
               curated: d.curated as number,
               safety: d.safety as number,
             },
-            highlights: JSON.parse((d.highlights as string) || '[]'),
+            highlights: safeStringArray(d.highlights),
           }))
           setDestinations(mapped)
         }

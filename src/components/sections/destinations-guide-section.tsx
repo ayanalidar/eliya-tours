@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Star, TrendingUp, ShieldCheck, Compass, ArrowUpRight } from 'lucide-react'
 import { destinations as fallbackDestinations, type Destination } from '@/lib/destinations'
 import { useNav } from '@/lib/router'
+import { safeStringArray } from '@/lib/safe-parse'
 
 // ============================================================
 // Circular progress ring (animated on first visibility)
@@ -297,7 +298,7 @@ export function DestinationsGuideSection() {
               curated: d.curated as number,
               safety: d.safety as number,
             },
-            highlights: JSON.parse((d.highlights as string) || '[]'),
+            highlights: safeStringArray(d.highlights),
           }))
           setDestinations(mapped)
         }
