@@ -331,6 +331,12 @@ function EnquiriesManager() {
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load() }, [load])
 
+  // Real-time sync: refresh every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => load(), 30000)
+    return () => clearInterval(interval)
+  }, [load])
+
   const updateStatus = async (id: string, status: string) => {
     await fetch('/api/enquiries', {
       method: 'PATCH',
@@ -1194,6 +1200,12 @@ function BookingsManager() {
   }
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load() }, [])
+
+  // Real-time sync: refresh every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => load(), 30000)
+    return () => clearInterval(interval)
+  }, [])
 
   const markPaid = async (id: string) => {
     const booking = items.find((b) => b.id === id)

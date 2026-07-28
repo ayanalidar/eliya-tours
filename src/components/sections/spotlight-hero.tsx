@@ -85,18 +85,23 @@ export function SpotlightHero() {
             Discover Kashmir
           </h1>
 
-          {/* Crown subtitle */}
-          <p className="mt-2 sm:mt-3 text-base sm:text-xl lg:text-2xl font-semibold tracking-[0.15em] uppercase eliya-gradient-text opacity-0 animate-[fadeInUp_1.1s_0.5s_forwards]">
-            The Crown Of India
+          {/* Paradise on Earth */}
+          <p className="mt-1 sm:mt-2 text-lg sm:text-2xl lg:text-3xl font-light italic text-amber-50/90 opacity-0 animate-[fadeInUp_1.1s_0.45s_forwards]">
+            Paradise on Earth
+          </p>
+
+          {/* Crown of India */}
+          <p className="mt-2 sm:mt-3 text-sm sm:text-lg lg:text-xl font-semibold tracking-[0.15em] uppercase eliya-gradient-text opacity-0 animate-[fadeInUp_1.1s_0.55s_forwards]">
+            The Crown of India
           </p>
 
           {/* Tagline */}
-          <p className="mt-3 sm:mt-5 text-sm sm:text-lg lg:text-xl font-light italic text-amber-50/80 opacity-0 animate-[fadeInUp_1.1s_0.65s_forwards]">
+          <p className="mt-3 sm:mt-5 text-sm sm:text-base lg:text-lg font-light italic text-amber-50/70 opacity-0 animate-[fadeInUp_1.1s_0.7s_forwards]">
             With The People Who Call It Home
           </p>
 
           {/* Subtitle */}
-          <p className="mt-6 sm:mt-8 max-w-lg text-xs sm:text-sm lg:text-base leading-relaxed text-stone-200/75 opacity-0 animate-[fadeInUp_1.1s_0.8s_forwards]">
+          <p className="mt-5 sm:mt-7 max-w-lg text-xs sm:text-sm lg:text-base leading-relaxed text-stone-200/70 opacity-0 animate-[fadeInUp_1.1s_0.85s_forwards]">
             Bespoke journeys through the Valley. Houseboats on Nigeen Lake, powder runs in Gulmarg,
             glacier treks out of Sonmarg, and the hidden meadows of Yusmarg. Curated by Eliya since 2009.
           </p>

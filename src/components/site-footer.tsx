@@ -3,6 +3,7 @@
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
 import { companyInfo } from '@/lib/destinations'
 import { useNav } from '@/lib/router'
+import { AnimatedLogo } from '@/components/animated-logo'
 
 export function SiteFooter() {
   const nav = useNav()
@@ -12,7 +13,7 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:gap-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand */}
           <div>
-            <img src="/logo.png" alt="Eliya Tours" className="h-10 w-auto mb-4 brightness-0 invert" />
+            <AnimatedLogo className="h-10 w-auto mb-4" light={true} />
             <p className="text-sm leading-relaxed text-stone-400 max-w-xs">
               A family-owned Kashmir travel house, run by CEO {companyInfo.ceo} from {companyInfo.ceoAddress} since {companyInfo.founded}. We curate journeys, not itineraries. Every route is walked, every guide is local, every houseboat is owned by someone we know by name.
             </p>

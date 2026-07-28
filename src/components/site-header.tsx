@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, LogIn } from 'lucide-react'
 import { useNav } from '@/lib/router'
+import { AnimatedLogo } from '@/components/animated-logo'
 
 const navItems = [
   { label: 'Home', route: { name: 'home' as const } },
@@ -51,7 +52,7 @@ export function SiteHeader() {
           onClick={() => nav({ name: 'home' })}
           className="flex items-center gap-2 group"
         >
-          <img src="/logo.png" alt="Eliya Tours" className="h-8 sm:h-9 w-auto object-contain" />
+          <AnimatedLogo className="h-9 sm:h-10 w-auto" light={useLightHeader} />
         </button>
 
         <nav className="hidden md:flex items-center gap-1">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { ErrorBoundary } from '@/components/error-boundary'
 import { useRouter } from '@/lib/router'
 import { SiteHeader } from '@/components/site-header'
@@ -10,31 +10,41 @@ import { SpotlightHero } from '@/components/sections/spotlight-hero'
 import { StorySection } from '@/components/sections/story-section'
 import { DestinationsSection } from '@/components/sections/destinations-section'
 import { GenreTimelineSection } from '@/components/sections/genre-timeline-section'
-import { VirtualTourSection } from '@/components/sections/virtual-tour-section'
 import { DestinationsGuideSection } from '@/components/sections/destinations-guide-section'
 import { ContactSection } from '@/components/sections/contact-section'
-import { AIGuidePage } from '@/components/pages/ai-guide-page'
-import { DestinationsPage } from '@/components/pages/destinations-page'
-import { DestinationPage } from '@/components/pages/destination-page'
-import { SeasonsPage } from '@/components/pages/seasons-page'
-import { SeasonPage } from '@/components/pages/season-page'
-import { HotelsPage } from '@/components/pages/hotels-page'
-import { ContactPage } from '@/components/pages/contact-page'
-import { AdminPage } from '@/components/pages/admin-page'
-import { AdventuresPage } from '@/components/pages/adventures-page'
-import { AdventurePage } from '@/components/pages/adventure-page'
-import { BookingPage } from '@/components/pages/booking-page'
-import { GuestPortalPage } from '@/components/pages/guest-portal-page'
-import { OffersPage } from '@/components/pages/offers-page'
-import { TicketsPage } from '@/components/pages/tickets-page'
+
+// Lazy-load heavy pages — only loaded when navigated to
+const VirtualTourSection = lazy(() => import('@/components/sections/virtual-tour-section').then(m => ({ default: m.VirtualTourSection })))
+const AIGuidePage = lazy(() => import('@/components/pages/ai-guide-page').then(m => ({ default: m.AIGuidePage })))
+const DestinationsPage = lazy(() => import('@/components/pages/destinations-page').then(m => ({ default: m.DestinationsPage })))
+const DestinationPage = lazy(() => import('@/components/pages/destination-page').then(m => ({ default: m.DestinationPage })))
+const SeasonsPage = lazy(() => import('@/components/pages/seasons-page').then(m => ({ default: m.SeasonsPage })))
+const SeasonPage = lazy(() => import('@/components/pages/season-page').then(m => ({ default: m.SeasonPage })))
+const HotelsPage = lazy(() => import('@/components/pages/hotels-page').then(m => ({ default: m.HotelsPage })))
+const ContactPage = lazy(() => import('@/components/pages/contact-page').then(m => ({ default: m.ContactPage })))
+const AdminPage = lazy(() => import('@/components/pages/admin-page').then(m => ({ default: m.AdminPage })))
+const AdventuresPage = lazy(() => import('@/components/pages/adventures-page').then(m => ({ default: m.AdventuresPage })))
+const AdventurePage = lazy(() => import('@/components/pages/adventure-page').then(m => ({ default: m.AdventurePage })))
+const BookingPage = lazy(() => import('@/components/pages/booking-page').then(m => ({ default: m.BookingPage })))
+const GuestPortalPage = lazy(() => import('@/components/pages/guest-portal-page').then(m => ({ default: m.GuestPortalPage })))
+const OffersPage = lazy(() => import('@/components/pages/offers-page').then(m => ({ default: m.OffersPage })))
+const TicketsPage = lazy(() => import('@/components/pages/tickets-page').then(m => ({ default: m.TicketsPage })))
 
 function LoadingShell() {
   return (
     <div className="min-h-screen grid place-items-center bg-stone-950">
       <div className="text-center">
         <div className="text-amber-50 text-base font-medium mb-1">Eliya Tours</div>
-        <div className="text-amber-200/50 text-xs animate-pulse">Loading…</div>
+        <div className="text-amber-200/50 text-xs animate-pulse">Loading...</div>
       </div>
+    </div>
+  )
+}
+
+function PageLoader() {
+  return (
+    <div className="min-h-[60vh] grid place-items-center bg-stone-50">
+      <div className="text-stone-400 text-sm animate-pulse">Loading...</div>
     </div>
   )
 }
@@ -65,18 +75,18 @@ function AppRoutes() {
   if (route.name === 'ai-guide') {
     return (
       <>
-        <AIGuidePage />
+        <Suspense fallback={<PageLoader />}><AIGuidePage /></Suspense>
         <StickyActions />
       </>
     )
   }
   if (route.name === 'admin') {
-    return <AdminPage />
+    return <Suspense fallback={<PageLoader />}><AdminPage /></Suspense>
   }
   if (route.name === 'guest-portal') {
     return (
       <>
-        <GuestPortalPage />
+        <Suspense fallback={<PageLoader />}><GuestPortalPage /></Suspense>
         <StickyActions />
       </>
     )
@@ -85,7 +95,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <BookingPage preselectedPackageId={route.packageId} />
+        <Suspense fallback={<PageLoader />}><BookingPage preselectedPackageId={route.packageId} /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -97,7 +107,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <DestinationsPage />
+        <Suspense fallback={<PageLoader />}><DestinationsPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -107,7 +117,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <DestinationPage id={route.id} />
+        <Suspense fallback={<PageLoader />}><DestinationPage id={route.id} /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -117,7 +127,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <AdventuresPage />
+        <Suspense fallback={<PageLoader />}><AdventuresPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -127,7 +137,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <AdventurePage id={route.id} />
+        <Suspense fallback={<PageLoader />}><AdventurePage id={route.id} /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -137,7 +147,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <SeasonsPage />
+        <Suspense fallback={<PageLoader />}><SeasonsPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -147,7 +157,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <SeasonPage id={route.id} />
+        <Suspense fallback={<PageLoader />}><SeasonPage id={route.id} /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -157,7 +167,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <HotelsPage />
+        <Suspense fallback={<PageLoader />}><HotelsPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -167,7 +177,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <TicketsPage />
+        <Suspense fallback={<PageLoader />}><TicketsPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -177,7 +187,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <ContactPage />
+        <Suspense fallback={<PageLoader />}><ContactPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -187,7 +197,7 @@ function AppRoutes() {
     return (
       <>
         <SiteHeader />
-        <OffersPage />
+        <Suspense fallback={<PageLoader />}><OffersPage /></Suspense>
         <SiteFooter />
         <StickyActions />
       </>
@@ -219,7 +229,7 @@ function AppRoutes() {
         <StorySection />
         <DestinationsSection />
         <GenreTimelineSection />
-        <VirtualTourSection />
+        <Suspense fallback={<PageLoader />}><VirtualTourSection /></Suspense>
         <DestinationsGuideSection />
         <ContactSection />
       </main>
