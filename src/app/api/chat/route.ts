@@ -14,10 +14,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { rateLimit, getClientIP, rateLimitResponse, sanitizeString } from '@/lib/security'
 
-// OpenRouter API config — free models, OpenAI-compatible
+// OpenRouter API config — using fast model for quick responses
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || process.env.ZAI_API_KEY || ''
-const AI_MODEL = 'meta-llama/llama-3.3-70b-instruct'
+// Use Llama 3.1 8B — 10x faster than 70B, still smart enough for a tour guide
+const AI_MODEL = 'meta-llama/llama-3.1-8b-instruct'
+
+// Cache the system prompt for 5 minutes (avoid DB queries on every message)
+let cachedPrompt: { text: string; expires: number } | null = null
+const PROMPT_CACHE_MS = 5 * 60 * 1000
 
 const WHATSAPP_NUMBER = '917006734747'
 
@@ -50,49 +55,32 @@ async function buildHandoffReply(sessionId: string, userName?: string): Promise<
 // Build the system prompt · includes the live DB content so the
 // model always answers from current Eliya data.
 async function buildSystemPrompt(): Promise<string> {
+  // Return cached prompt if still fresh (avoids DB queries on every message)
+  if (cachedPrompt && Date.now() < cachedPrompt.expires) {
+    return cachedPrompt.text
+  }
+
   const [destinations, seasons, hotels] = await Promise.all([
-    db.destination.findMany({ select: { id: true, name: true, area: true, region: true, elevation: true, bestSeason: true, tagline: true, description: true, longDescription: true, highlights: true, latitude: true, longitude: true } }),
-    db.season.findMany({ select: { id: true, season: true, months: true, title: true, theme: true, description: true, longDescription: true, priceFrom: true, duration: true, destinations: true, itinerary: true } }),
-    db.hotel.findMany({ select: { id: true, name: true, destinationId: true, type: true, starRating: true, description: true, priceFrom: true, amenities: true } }),
+    db.destination.findMany({ select: { name: true, area: true, elevation: true, bestSeason: true } }),
+    db.season.findMany({ select: { title: true, months: true, priceFrom: true, duration: true } }),
+    db.hotel.findMany({ select: { name: true, starRating: true, priceFrom: true } }),
   ])
 
-  const destSummary = destinations
-    .map((d) => `  - ${d.name} (${d.area}, ${d.region}, ${d.elevation}, best: ${d.bestSeason}) · ${d.tagline}. ${d.description}`)
-    .join('\n')
+  // Keep summaries SHORT — fewer tokens = faster response
+  const destSummary = destinations.map(d => `${d.name} (${d.area}, ${d.elevation}, ${d.bestSeason})`).join(', ')
+  const seasonSummary = seasons.map(s => `${s.title} ${s.months} from Rs.${s.priceFrom} ${s.duration}`).join('; ')
+  const hotelSummary = hotels.map(h => `${h.name} ${h.starRating}star Rs.${h.priceFrom}/night`).join('; ')
 
-  const seasonSummary = seasons
-    .map((s) => `  - ${s.title} (${s.season}, ${s.months}, from ₹${s.priceFrom}, ${s.duration}) · ${s.theme}. ${s.description}`)
-    .join('\n')
+  const prompt = `You are Tariq, a Kashmiri tour guide from Eliya Tours (since 2009). Be warm, brief and helpful. Reply in under 150 words.
 
-  const hotelSummary = hotels
-    .map((h) => `  - ${h.name} (${h.type}, ${h.starRating}★, from ₹${h.priceFrom}/night, destination: ${h.destinationId}) · ${h.description}`)
-    .join('\n')
+Destinations: ${destSummary}
+Seasons: ${seasonSummary}
+Hotels: ${hotelSummary}
 
-  return `You are the Eliya Tours And Travels AI guide · a knowledgeable Kashmiri local named Tariq who has been running tours in Kashmir and Ladakh since 2009. You are warm, specific, and never make things up. Your SOLE PURPOSE is to help guests understand Eliya's packages and Kashmir/Ladakh destinations, and to design custom packages on request.
+Rules: Never invent facts. If unsure, say "Let me check with the team." For custom trips, give a brief day-by-day plan with rough cost. Match the user's language (English/Hindi/Urdu). End with a next step. Contact: +91-7006734747, hello@eliyatours.in`
 
-Always answer as Tariq · first-person, friendly, with concrete details from the data below. If a guest asks about a destination you don't have in the data, say you don't have a curated package there yet but offer the closest alternative. If asked to design a custom package, always include: day-by-day plan, estimated price in INR per person (based on the prices in the data), best season, and which Eliya destinations are included.
-
-CURRENT ELIYA DATA:
-
-DESTINATIONS (always reference these · do not invent new ones):
-${destSummary}
-
-SEASONAL PACKAGES:
-${seasonSummary}
-
-HOTELS:
-${hotelSummary}
-
-RULES:
-1. Never invent destinations, prices, or facts not in the data above. If unsure, say "Let me check with the team in Srinagar and reply by email."
-2. When recommending a package, mention its name, duration, price-from, and what's included.
-3. When designing a custom package, structure it as Day 1 / Day 2 / etc., with destination, activity, and rough cost.
-4. Keep replies under 250 words unless the guest specifically asks for more detail.
-5. LANGUAGE: Always reply in the same language the user writes in. If they write Hindi (Devanagari or Roman), reply in Hindi. If Urdu, reply in Urdu. If English, reply in English. Match their script and tone.
-6. Always end with a clear next step: "Shall I send you a draft itinerary over WhatsApp?" or "Would you like me to book this?" · but never claim to actually book.
-7. If asked about safety, weather, or permits, be specific to the destination's data.
-8. If the user asks to speak to a human, says "human", "whatsapp", "agent", or similar · tell them you'll hand them over and the system will provide a WhatsApp link automatically.
-9. Company contact: +91-7006734747 (WhatsApp/call), hello@eliyatours.in.`
+  cachedPrompt = { text: prompt, expires: Date.now() + PROMPT_CACHE_MS }
+  return prompt
 }
 
 export async function POST(req: NextRequest) {
@@ -166,7 +154,7 @@ export async function POST(req: NextRequest) {
         model: AI_MODEL,
         messages,
         temperature: 0.7,
-        max_tokens: 900,
+        max_tokens: 400,
       }),
     })
 
