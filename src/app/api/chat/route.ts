@@ -17,7 +17,7 @@ import { rateLimit, getClientIP, rateLimitResponse, sanitizeString } from '@/lib
 // OpenRouter API config — free models, OpenAI-compatible
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || process.env.ZAI_API_KEY || ''
-const AI_MODEL = 'meta-llama/llama-3.3-70b-instruct:free'
+const AI_MODEL = 'meta-llama/llama-3.3-70b-instruct'
 
 const WHATSAPP_NUMBER = '917006734747'
 
