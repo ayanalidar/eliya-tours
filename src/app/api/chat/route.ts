@@ -14,9 +14,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { rateLimit, getClientIP, rateLimitResponse, sanitizeString } from '@/lib/security'
 
-// ZAI API config — read from env or config file
-const ZAI_BASE_URL = 'https://api.z.ai/api/paas/v4'
-const ZAI_API_KEY = process.env.ZAI_API_KEY || 'fe6e56c1437a4ce9883a6646dbd6fa74.qLbw0dh0gaR2042W'
+// OpenRouter API config — free models, OpenAI-compatible
+const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions'
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || process.env.ZAI_API_KEY || ''
+const AI_MODEL = 'meta-llama/llama-3.3-70b-instruct:free'
 
 const WHATSAPP_NUMBER = '917006734747'
 
@@ -152,25 +153,26 @@ export async function POST(req: NextRequest) {
   ]
 
   try {
-    // Direct API call to ZAI — bypass SDK (SDK can't find config on Vercel serverless)
-    const apiResponse = await fetch(`${ZAI_BASE_URL}/chat/completions`, {
+    // Direct API call to OpenRouter (free Llama 3.3 70B model)
+    const apiResponse = await fetch(OPENROUTER_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${ZAI_API_KEY}`,
+        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+        'HTTP-Referer': 'https://eliya-tours.vercel.app',
+        'X-Title': 'Eliya Tours AI Guide',
       },
       body: JSON.stringify({
-        model: 'glm-4.6',
+        model: AI_MODEL,
         messages,
         temperature: 0.7,
         max_tokens: 900,
-        thinking: { type: 'disabled' },
       }),
     })
 
     if (!apiResponse.ok) {
       const errText = await apiResponse.text()
-      throw new Error(`ZAI API ${apiResponse.status}: ${errText.slice(0, 200)}`)
+      throw new Error(`AI API ${apiResponse.status}: ${errText.slice(0, 200)}`)
     }
 
     const response = await apiResponse.json()

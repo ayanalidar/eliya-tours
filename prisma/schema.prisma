@@ -328,3 +328,20 @@ model SiteSetting {
   value       String
   updatedAt   DateTime @updatedAt
 }
+
+// ---------- Menu items (veg/non-veg, prices, images) ----------
+model MenuItem {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    String   // "Starters", "Main Course", "Breads", "Desserts", "Beverages", "Wazwan"
+  mealType    String   // "veg" or "nonveg"
+  price       Int      // in INR
+  image       String?
+  available   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([mealType])
+}

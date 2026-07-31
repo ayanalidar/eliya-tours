@@ -4,11 +4,12 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import {
   ArrowLeft, LogOut, Lock, Mail, LayoutDashboard, MapPin, CalendarDays, Hotel as HotelIcon,
   Inbox, FileText, Plus, Edit, Trash2, Check, X, Download, Sparkles, Loader2,
-  Tag, Star, Mountain, Upload, ImageIcon, DollarSign, Route, Database,
+  Tag, Star, Mountain, Upload, ImageIcon, DollarSign, Route, Database, Utensils,
 } from 'lucide-react'
 import { useNav } from '@/lib/router'
 import { UniversalEditor } from '@/components/admin/universal-editor'
 import { HeroEditor } from '@/components/admin/hero-editor'
+import { MenuManager } from '@/components/admin/menu-manager'
 import { safeJsonParse } from '@/lib/safe-parse'
 
 // ============================================================
@@ -23,7 +24,7 @@ export function AdminPage() {
   const [checking, setChecking] = useState(true)
   const [tab, setTab] = useState<
     'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' |
-    'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor' | 'hero'
+    'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor' | 'hero' | 'menu'
   >('dashboard')
 
   useEffect(() => {
@@ -62,6 +63,7 @@ export function AdminPage() {
     { id: 'itineraries' as const, label: 'Itineraries', Icon: Route },
     { id: 'data-editor' as const, label: 'Data Editor', Icon: Database },
     { id: 'hero' as const, label: 'Hero Section', Icon: ImageIcon },
+    { id: 'menu' as const, label: 'Menu', Icon: Utensils },
   ]
 
   return (
@@ -120,6 +122,7 @@ export function AdminPage() {
         {tab === 'itineraries' && <ItinerariesManager user={user} />}
         {tab === 'data-editor' && <UniversalEditor />}
         {tab === 'hero' && <HeroEditor />}
+        {tab === 'menu' && <MenuManager />}
       </main>
     </div>
   )
@@ -228,7 +231,7 @@ function LoginScreen({ onSuccess, onBack }: { onSuccess: (u: AdminUser) => void;
 // ============================================================
 // Dashboard
 // ============================================================
-type TabId = 'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' | 'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor' | 'hero'
+type TabId = 'dashboard' | 'enquiries' | 'destinations' | 'seasons' | 'hotels' | 'invoices' | 'offers' | 'reviews' | 'bookings' | 'adventures' | 'pricing' | 'itineraries' | 'data-editor' | 'hero' | 'menu'
 function Dashboard({ user, setTab }: { user: AdminUser; setTab: (t: TabId) => void }) {
   const [stats, setStats] = useState({ enquiries: 0, destinations: 0, seasons: 0, hotels: 0, invoices: 0, newEnquiries: 0, bookings: 0, adventures: 0, offers: 0, pendingReviews: 0 })
   const [loading, setLoading] = useState(true)
