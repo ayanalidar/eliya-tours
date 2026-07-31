@@ -11,9 +11,12 @@
 //   with chat history
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server'
-import ZAI from 'z-ai-web-dev-sdk'
 import { db } from '@/lib/db'
 import { rateLimit, getClientIP, rateLimitResponse, sanitizeString } from '@/lib/security'
+
+// ZAI API config — read from env or config file
+const ZAI_BASE_URL = 'https://api.z.ai/api/paas/v4'
+const ZAI_API_KEY = process.env.ZAI_API_KEY || 'fe6e56c1437a4ce9883a6646dbd6fa74.qLbw0dh0gaR2042W'
 
 const WHATSAPP_NUMBER = '917006734747'
 
@@ -149,17 +152,28 @@ export async function POST(req: NextRequest) {
   ]
 
   try {
-    // ZAI.create() reads from .z-ai-config file (committed to repo)
-    // or from ZAI_API_KEY env var
-    const zai = await ZAI.create()
-    const response = await zai.chat.completions.create({
-      model: 'glm-4.6',
-      messages,
-      temperature: 0.7,
-      max_tokens: 900,
-      thinking: { type: 'disabled' },
+    // Direct API call to ZAI — bypass SDK (SDK can't find config on Vercel serverless)
+    const apiResponse = await fetch(`${ZAI_BASE_URL}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ZAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'glm-4.6',
+        messages,
+        temperature: 0.7,
+        max_tokens: 900,
+        thinking: { type: 'disabled' },
+      }),
     })
 
+    if (!apiResponse.ok) {
+      const errText = await apiResponse.text()
+      throw new Error(`ZAI API ${apiResponse.status}: ${errText.slice(0, 200)}`)
+    }
+
+    const response = await apiResponse.json()
     const reply = response.choices?.[0]?.message?.content || 'I apologize · I could not generate a reply. Please try again or call us at +91-7006734747.'
 
     // Log the assistant reply
